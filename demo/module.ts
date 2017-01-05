@@ -9,6 +9,7 @@ import '../src/themes/material.scss';
 
 // -- Basic
 import { BasicFixedComponent } from './basic/basic-fixed';
+import { BasicMemberclicksComponent } from './basic/basic-memberclicks-table';
 import { BasicAutoComponent } from './basic/basic-auto';
 import { VirtualScrollComponent } from './basic/virtual';
 import { InlineEditComponent } from './basic/inline';
@@ -54,6 +55,7 @@ import { ColumnPinningComponent } from './columns/pinning';
   declarations: [
     AppComponent,
     BasicAutoComponent,
+    BasicMemberclicksComponent,
     BasicFixedComponent,
     FullScreenComponent,
     InlineEditComponent,

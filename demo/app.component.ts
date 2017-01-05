@@ -21,6 +21,7 @@ import { Component } from '@angular/core';
           <li>
             <h4>Basic</h4>
             <ul>
+              <li><a href="#" (click)="state='memberclicks'">Ian's Edits</a></li>
               <li><a href="#" (click)="state=''">Auto Row Height</a></li>
               <li><a href="#" (click)="state='basic-fixed'">Fixed Row Height</a></li>
               <li><a href="#" (click)="state='virtual-scroll'">10k Rows</a></li>
@@ -84,6 +85,7 @@ import { Component } from '@angular/core';
       <content>
         <!-- Basic -->
         <basic-auto-demo *ngIf="!state"></basic-auto-demo>
+        <basic-memberclicks-table *ngIf="state === 'memberclicks'"></basic-memberclicks-table>
         <basic-fixed-demo *ngIf="state === 'basic-fixed'"></basic-fixed-demo>
         <full-screen-demo *ngIf="state === 'full-screen'"></full-screen-demo>
         <inline-edit-demo *ngIf="state === 'inline-edit'"></inline-edit-demo>
