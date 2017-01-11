@@ -14,6 +14,14 @@ import { Component } from '@angular/core';
         [footerHeight]="50"
         [rowHeight]="'auto'"
         [limit]="10">
+        <ngx-datatable-pager-select>
+          <template let-parent="parent" ngx-datatable-pager-select-template>
+            <select [(ngModel)]="parent.pageSize" (change)="parent.changePageSize($event)">
+              <option *ngFor="let t of parent.pageSizes" [value]="t" [selected]="t === parent.pageSize ? 'selected' : ''">{{t}}</option>
+            </select>
+            {{curPage}}
+          </template>
+        </ngx-datatable-pager-select>
       </ngx-datatable>
     </div>
   `
@@ -21,6 +29,7 @@ import { Component } from '@angular/core';
 export class ClientPagingComponent {
 
   rows = [];
+  size = 10;
 
   constructor() {
     this.fetch((data) => {

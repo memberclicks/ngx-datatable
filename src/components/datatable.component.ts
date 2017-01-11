@@ -10,6 +10,7 @@ import { ColumnMode, SortType, SelectionType } from '../types';
 import { DataTableBodyComponent } from './body';
 import { DataTableColumnDirective } from './columns';
 import { DatatableRowDetailDirective } from './row-detail';
+import { DatatablePagerSelectDirective } from './pager-select';
 import { scrollbarWidth, setColumnDefaults, throttleable, translateTemplates } from '../utils';
 
 @Component({
@@ -68,7 +69,8 @@ import { scrollbarWidth, setColumnDefaults, throttleable, translateTemplates } f
       <datatable-footer
         *ngIf="footerHeight"
         [rowCount]="rowCount"
-        [pageSize]="pageSize"
+        [pageSize]="limit"
+        [pageSizes]="pageSizes"
         [offset]="offset"
         [footerHeight]="footerHeight"
         [totalMessage]="messages.totalMessage"
@@ -76,6 +78,7 @@ import { scrollbarWidth, setColumnDefaults, throttleable, translateTemplates } f
         [pagerRightArrowIcon]="cssClasses.pagerRightArrow"
         [pagerPreviousIcon]="cssClasses.pagerPrevious"
         [pagerNextIcon]="cssClasses.pagerNext"
+        [pagerSelectTemplate]="pagerSelectTemplate"
         (page)="onFooterPage($event)">
       </datatable-footer>
     </div>
@@ -238,6 +241,15 @@ export class DatatableComponent implements OnInit, AfterViewInit, DoCheck {
   @Input() limit: number = undefined;
 
   /**
+   * The page sizes available on the pager. 
+   * Default value: `[ 5, 10, 25, 50, 100 ]`
+   * 
+   * @type {number}
+   * @memberOf DatatableComponent
+   */
+  @Input() pageSizes: number[] = [ 5, 10, 25, 50, 100 ];
+
+  /**
    * The total count of all rows. 
    * Default value: `0`
    * 
@@ -329,6 +341,14 @@ export class DatatableComponent implements OnInit, AfterViewInit, DoCheck {
    * @memberOf DatatableComponent
    */
   @Input() rowDetailTemplate: TemplateRef<any>;
+
+  /**
+   * Pager select template
+   * 
+   * @type {TemplateRef<any>}
+   * @memberOf DatatableComponent
+   */
+  @Input() pagerSelectTemplate: TemplateRef<any>;
 
   /**
    * Css class overrides
@@ -634,6 +654,17 @@ export class DatatableComponent implements OnInit, AfterViewInit, DoCheck {
   }
 
   /**
+   * Pager Select templates gathered from the ContentChild
+   * 
+   * @memberOf DatatableComponent
+   */
+  @ContentChild(DatatablePagerSelectDirective)
+  set pagerSelectTemplateChild(val: DatatablePagerSelectDirective) {
+    this._pagerSelectTemplateChild = val;
+    if(val) this.pagerSelectTemplate = val.pagerSelectTemplate;
+  }
+
+  /**
    * Returns the row templates.
    * 
    * @readonly
@@ -642,6 +673,16 @@ export class DatatableComponent implements OnInit, AfterViewInit, DoCheck {
    */
   get rowDetailTemplateChild(): DatatableRowDetailDirective {
     return this._rowDetailTemplateChild;
+  }
+  /**
+   * Returns the row templates.
+   * 
+   * @readonly
+   * @type {DatatableRowDetailDirective}
+   * @memberOf DatatableComponent
+   */
+  get pagerSelectTemplateChild(): DatatablePagerSelectDirective {
+    return this._pagerSelectTemplateChild;
   }
 
   /**
@@ -682,6 +723,7 @@ export class DatatableComponent implements OnInit, AfterViewInit, DoCheck {
   _columns: any[];
   _columnTemplates: QueryList<DataTableColumnDirective>;
   _rowDetailTemplateChild: DatatableRowDetailDirective;
+  _pagerSelectTemplateChild: DatatablePagerSelectDirective;
 
   constructor(element: ElementRef, differs: KeyValueDiffers) {
     // get ref to elm for measuring
@@ -883,6 +925,10 @@ export class DatatableComponent implements OnInit, AfterViewInit, DoCheck {
    */
   onFooterPage(event: any) {
     this.offset = event.page - 1;
+    if(event.pageSize !== undefined){
+      this.limit = event.pageSize;
+      this.recalculate();
+    }
     this.bodyComponent.updateOffsetY(this.offset);
 
     this.page.emit({
@@ -909,7 +955,6 @@ export class DatatableComponent implements OnInit, AfterViewInit, DoCheck {
       const size = Math.ceil(this.bodyHeight / this.rowHeight);
       return Math.max(size, 0);
     }
-
     // if limit is passed, we are paging
     if (this.limit !== undefined) return this.limit;
 

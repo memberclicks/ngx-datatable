@@ -1,5 +1,6 @@
 import { NgModule, ApplicationRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
 
 import { NgxDatatableModule } from '../src';
@@ -87,7 +88,7 @@ import { ColumnPinningComponent } from './columns/pinning';
     CheckboxSelectionComponent,
     MultiClickSelectionComponent
   ],
-  imports: [BrowserModule, NgxDatatableModule],
+  imports: [BrowserModule, NgxDatatableModule, FormsModule],
   bootstrap: [AppComponent]
 })
 export class AppModule {
