@@ -34,6 +34,12 @@ import { Component } from '@angular/core';
             [resizeable]="false"
             [headerCheckboxable]="true"
             [checkboxable]="true">
+            <template let-parent="parent" ngx-datatable-checkbox-cell-template>
+              <md-checkbox [checked]="parent.isSelected" (change)="parent.onCheckboxChange($event)"></md-checkbox>
+            </template>
+            <template let-selected="allRowsSelected" let-parent="parent" let-emit="emit" ngx-datatable-checkbox-header-template>
+              <md-checkbox [checked]="allRowsSelected" (change)="parent.select.emit(!parent.allRowsSelected)"></md-checkbox>
+            </template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Name"></ngx-datatable-column>
           <ngx-datatable-column name="Gender"></ngx-datatable-column>
@@ -96,6 +102,13 @@ export class CheckboxSelectionComponent {
 
   remove() {
     this.selected = [];
+  }
+
+  checkIsSelected(parent){
+    return parent.isSelected ? true : false;
+  }
+  checkParent(evt, parent){
+    parent.onCheckboxChange(evt);
   }
 
 }

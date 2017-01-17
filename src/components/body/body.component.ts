@@ -74,6 +74,7 @@ export class DataTableBodyComponent {
   @Input() rowDetailTemplate: any;
   @Input() selectCheck: any;
   @Input() trackByProp: string;
+  @Input() checkboxTemplate: any;
 
   @Input() set pageSize(val: number) {
     this._pageSize = val;

@@ -65,13 +65,18 @@ export function translateTemplates(templates: DataTableColumnDirective[]): any[]
     for(const prop of props) {
       col[prop] = temp[prop];
     }
-
+    //Possibly add in protections for both checkbox and regular header template. Will ask JOSH about this API
+    //And what seems most natural
     if(temp.headerTemplate) {
       col.headerTemplate = temp.headerTemplate;
+    }else if(temp.headerCheckboxTemplate){
+      col.headerCheckboxTemplate = temp.headerCheckboxTemplate;
     }
 
     if(temp.cellTemplate) {
       col.cellTemplate = temp.cellTemplate;
+    }else if(temp.cellCheckboxTemplate){
+      col.cellCheckboxTemplate = temp.cellCheckboxTemplate;
     }
 
     result.push(col);

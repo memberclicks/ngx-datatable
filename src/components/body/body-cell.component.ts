@@ -11,7 +11,7 @@ import { SortDirection } from '../../types';
   template: `
     <div class="datatable-body-cell-label">
       <label
-        *ngIf="column.checkboxable" 
+        *ngIf="column.checkboxable && !column.cellCheckboxTemplate" 
         class="datatable-checkbox">
         <input 
           type="checkbox"
@@ -19,6 +19,12 @@ import { SortDirection } from '../../types';
           (click)="onCheckboxChange($event)" 
         />
       </label>
+      <template
+        class="datatable-checkbox"
+        *ngIf="column.checkboxable && column.cellCheckboxTemplate"
+        [ngTemplateOutlet]="column.cellCheckboxTemplate" 
+        [ngOutletContext]="checkboxObject">
+      </template>
       <span
         *ngIf="!column.cellTemplate"
         [innerHTML]="value">
@@ -181,5 +187,11 @@ export class DataTableBodyCellComponent {
 
     if(sort) return sort.dir;
   }
-
+  
+  getIsSelected(){
+    return this.isSelected;
+  }
+  checkboxObject = {
+    parent : this
+  };
 }

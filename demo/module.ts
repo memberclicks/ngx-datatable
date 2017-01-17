@@ -1,6 +1,7 @@
 import { NgModule, ApplicationRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
+import { FormsModule } from '@angular/forms';
 
 import { NgxDatatableModule } from '../src';
 import { AppComponent } from './app.component';
@@ -51,6 +52,9 @@ import { ColumnForceComponent } from './columns/column-force';
 import { ColumnFlexComponent } from './columns/column-flex';
 import { ColumnPinningComponent } from './columns/pinning';
 
+// -- Material Library
+import { MaterialModule } from '@angular/material';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -87,7 +91,7 @@ import { ColumnPinningComponent } from './columns/pinning';
     CheckboxSelectionComponent,
     MultiClickSelectionComponent
   ],
-  imports: [BrowserModule, NgxDatatableModule],
+  imports: [BrowserModule, NgxDatatableModule, MaterialModule.forRoot(), FormsModule],
   bootstrap: [AppComponent]
 })
 export class AppModule {

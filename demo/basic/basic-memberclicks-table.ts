@@ -15,6 +15,7 @@ import { Component } from '@angular/core';
         [footerHeight]="50"
         [rowHeight]="'auto'">
       </ngx-datatable>
+      <md-checkbox></md-checkbox>
     </div>
   `
 })
