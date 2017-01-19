@@ -10,6 +10,7 @@ import { ColumnMode, SortType, SelectionType } from '../types';
 import { DataTableBodyComponent } from './body';
 import { DataTableColumnDirective } from './columns';
 import { DatatableRowDetailDirective } from './row-detail';
+import { DatatableRowHoverDirective } from './row-hover';
 import { scrollbarWidth, setColumnDefaults, throttleable, translateTemplates } from '../utils';
 
 @Component({
@@ -50,6 +51,8 @@ import { scrollbarWidth, setColumnDefaults, throttleable, translateTemplates } f
         [pageSize]="pageSize"
         [offsetX]="offsetX"
         [rowDetailTemplate]="rowDetailTemplate"
+        [rowHoverTemplate]="rowHoverTemplate"
+        [showOnHover]="showOnHover"
         [detailRowHeight]="detailRowHeight"
         [selected]="selected"
         [innerWidth]="innerWidth"
@@ -329,6 +332,23 @@ export class DatatableComponent implements OnInit, AfterViewInit, DoCheck {
    * @memberOf DatatableComponent
    */
   @Input() rowDetailTemplate: TemplateRef<any>;
+
+  /**
+   * Row detail template
+   * 
+   * @type {TemplateRef<any>}
+   * @memberOf DatatableComponent
+   */
+  @Input() rowHoverTemplate: TemplateRef<any>;
+
+  /**
+   * If the action bar should be displayed
+   * on hover over a row
+   * 
+   * @type {boolean}
+   * @memberOf DatatableComponent
+   */
+  @Input() showOnHover: boolean = false;
 
   /**
    * Css class overrides
@@ -632,6 +652,17 @@ export class DatatableComponent implements OnInit, AfterViewInit, DoCheck {
     this._rowDetailTemplateChild = val;
     if(val) this.rowDetailTemplate = val.rowDetailTemplate;
   }
+  
+  /**
+   * Row Detail templates gathered from the ContentChild
+   * 
+   * @memberOf DatatableComponent
+   */
+  @ContentChild(DatatableRowHoverDirective)
+  set rowHoverTemplateChild(val: DatatableRowHoverDirective) {
+    this._rowHoverTemplateChild = val;
+    if(val) this.rowHoverTemplate = val.rowHoverTemplate;
+  }
 
   /**
    * Returns the row templates.
@@ -642,6 +673,17 @@ export class DatatableComponent implements OnInit, AfterViewInit, DoCheck {
    */
   get rowDetailTemplateChild(): DatatableRowDetailDirective {
     return this._rowDetailTemplateChild;
+  }
+
+  /**
+   * Returns the row templates.
+   * 
+   * @readonly
+   * @type {DatatableRowHoverDirective}
+   * @memberOf DatatableComponent
+   */
+  get rowHoverTemplateChild(): DatatableRowHoverDirective {
+    return this._rowHoverTemplateChild;
   }
 
   /**
@@ -682,6 +724,7 @@ export class DatatableComponent implements OnInit, AfterViewInit, DoCheck {
   _columns: any[];
   _columnTemplates: QueryList<DataTableColumnDirective>;
   _rowDetailTemplateChild: DatatableRowDetailDirective;
+  _rowHoverTemplateChild: DatatableRowHoverDirective;
 
   constructor(element: ElementRef, differs: KeyValueDiffers) {
     // get ref to elm for measuring

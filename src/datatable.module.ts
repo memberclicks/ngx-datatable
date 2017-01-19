@@ -15,11 +15,14 @@ import {
   ProgressBarComponent,
   DataTableBodyCellComponent,
   DatatableRowDetailDirective,
+  DataTableRowHoverComponent,
   ScrollerComponent,
   DataTableSelectionComponent,
   DataTableColumnHeaderDirective,
   DataTableColumnCellDirective,
-  DatatableRowDetailTemplateDirective
+  DatatableRowDetailTemplateDirective,
+  DatatableRowHoverDirective,
+  DatatableRowHoverTemplateDirective
 } from './components';
 
 import {
@@ -51,17 +54,22 @@ import {
     ProgressBarComponent,
     DataTableBodyRowComponent,
     DataTableRowWrapperComponent,
+    DataTableRowHoverComponent,
     DatatableRowDetailDirective,
     DatatableRowDetailTemplateDirective,
     DataTableBodyCellComponent,
     DataTableSelectionComponent,
     DataTableColumnHeaderDirective,
-    DataTableColumnCellDirective
+    DataTableColumnCellDirective,
+    DatatableRowHoverDirective,
+    DatatableRowHoverTemplateDirective
   ],
   exports: [
     DatatableComponent,
     DatatableRowDetailDirective,
     DatatableRowDetailTemplateDirective,
+    DatatableRowHoverDirective,
+    DatatableRowHoverTemplateDirective,
     DataTableColumnDirective,
     DataTableColumnHeaderDirective,
     DataTableColumnCellDirective

@@ -36,16 +36,18 @@ import { ScrollerComponent } from './scroller.component';
           [row]="row"
           [expanded]="row.$$expanded === 1"
           (rowContextmenu)="rowContextmenu.emit($event)">
-          <datatable-body-row
-            tabindex="-1"
-            [isSelected]="selector.getRowSelected(row)"
-            [innerWidth]="innerWidth"
-            [offsetX]="offsetX"
-            [columns]="columns"
-            [rowHeight]="rowHeight"
-            [row]="row"
-            (activate)="selector.onActivate($event, i)">
-          </datatable-body-row>
+            <datatable-row-hover [showTemplate]="showOnHover" [rowHoverTemplate]="rowHoverTemplate">
+              <datatable-body-row
+                tabindex="-1"
+                [isSelected]="selector.getRowSelected(row)"
+                [innerWidth]="innerWidth"
+                [offsetX]="offsetX"
+                [columns]="columns"
+                [rowHeight]="rowHeight"
+                [row]="row"
+                (activate)="selector.onActivate($event, i)">
+              </datatable-body-row>
+          </datatable-row-hover>
         </datatable-row-wrapper>
       </datatable-scroller>
       <div
@@ -74,6 +76,8 @@ export class DataTableBodyComponent {
   @Input() rowDetailTemplate: any;
   @Input() selectCheck: any;
   @Input() trackByProp: string;
+  @Input() showOnHover : boolean;
+  @Input() rowHoverTemplate : any;
 
   @Input() set pageSize(val: number) {
     this._pageSize = val;

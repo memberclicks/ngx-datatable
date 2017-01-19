@@ -17,6 +17,7 @@ import { HorzVertScrolling } from './basic/scrolling';
 import { MultipleTablesComponent } from './basic/multiple';
 import { FullScreenComponent } from './basic/fullscreen';
 import { RowDetailsComponent } from './basic/row-detail';
+import { RowHoversComponent } from './basic/row-hover';
 import { FilterBarComponent } from './basic/filter';
 import { TabsDemoComponent } from './basic/tabs';
 import { LiveDataComponent } from './basic/live';
@@ -51,6 +52,9 @@ import { ColumnForceComponent } from './columns/column-force';
 import { ColumnFlexComponent } from './columns/column-flex';
 import { ColumnPinningComponent } from './columns/pinning';
 
+// -- Material Library
+import { MaterialModule } from '@angular/material';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,6 +67,7 @@ import { ColumnPinningComponent } from './columns/pinning';
     HorzVertScrolling,
     MultipleTablesComponent,
     RowDetailsComponent,
+    RowHoversComponent,
     ClientPagingComponent,
     ServerPagingComponent,
     ClientSortingComponent,
@@ -87,7 +92,7 @@ import { ColumnPinningComponent } from './columns/pinning';
     CheckboxSelectionComponent,
     MultiClickSelectionComponent
   ],
-  imports: [BrowserModule, NgxDatatableModule],
+  imports: [BrowserModule, NgxDatatableModule, MaterialModule.forRoot()],
   bootstrap: [AppComponent]
 })
 export class AppModule {
