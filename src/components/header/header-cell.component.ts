@@ -23,22 +23,24 @@ import { nextSortDir } from '../../utils';
         [ngTemplateOutlet]="column.headerCheckboxTemplate" 
         [ngOutletContext]="checkboxObject">
       </template>
-      <span
-        class="datatable-header-cell-label draggable"
-        *ngIf="!column.headerTemplate"
-        (click)="onSort()"
-        [innerHTML]="name">
+      <span class="datatable-header-cell-wrapper">
+        <span
+          class="datatable-header-cell-label draggable"
+          *ngIf="!column.headerTemplate"
+          (click)="onSort()"
+          [innerHTML]="name">
+        </span>
       </span>
       <template
         *ngIf="column.headerTemplate"
         [ngTemplateOutlet]="column.headerTemplate"
         [ngOutletContext]="{ 
           column: column, 
-          sortDir: sortDir
+          sortDir: sortDir,
+          sortFn: sortFn
         }">
       </template>
       <span
-        class="sort-btn"
         [class]="sortClass">
       </span>
     </div>
@@ -76,6 +78,7 @@ export class DataTableHeaderCellComponent {
 
     if(this.column.sortable) cls += ' sortable';
     if(this.column.resizeable) cls += ' resizeable';
+    if(this.column.cssClasses) cls += ' ' + this.column.cssClasses;
 
     const sortDir = this.sortDir;
     if(sortDir) {
@@ -106,12 +109,12 @@ export class DataTableHeaderCellComponent {
   }
 
   get isCheckboxable(): boolean {
-    return 
-      this.column.checkboxable && 
+    return this.column.checkboxable && 
       this.column.headerCheckboxable && 
       this.selectionType === SelectionType.checkbox;
   }
 
+  sortFn = this.onSort.bind(this);
   sortClass: string;
   sortDir: SortDirection;
   _sorts: any[];
@@ -139,9 +142,11 @@ export class DataTableHeaderCellComponent {
 
   calcSortClass(sortDir): string {
     if(sortDir === SortDirection.asc) {
-      return `sort-asc ${this.sortAscendingIcon}`;
+      return `sort-btn sort-asc ${this.sortAscendingIcon}`;
     } else if(sortDir === SortDirection.desc) {
-      return `sort-desc ${this.sortDescendingIcon}`;
+      return `sort-btn sort-desc ${this.sortDescendingIcon}`;
+    } else {
+      return `sort-btn`;
     }
   }
 

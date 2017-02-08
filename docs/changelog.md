@@ -1,5 +1,33 @@
 # Changelog
 
+## 6.0.2
+- Bug: Move scss to release dir (#459)
+
+## 6.0.1
+- Bug: Fix CSS not working with AoT (#459)
+- Chore: Fix ExtractText plugin causing build issue
+- Chore: Upgrade Angular 2.4.5
+
+## 6.0.0 (2017-01-25)
+- BREAKING: Renamed `datatable` css class to `ngx-datatable`
+- BREAKING: Embedded core css file with Angular `styleUrls`
+- Enhancement: Allow sorting from inline templates (#431)
+- Enhancement: Fix re-ordering columns throwing errors (#438)
+- Enhancement: Add nice drag indicator to material theme
+- Chore: Update Depedencies
+
+## 5.0.0
+- BREAKING: Re-worked all inputs, methods and outputs of row detail to its own container
+- Enhancement: Implement Finder/Explorer shift selection behavior
+- Bug: Fix reverse selection de-selecting first index in reverse
+- Bug: Fix row detail not rendering
+
+## 4.2.0
+- Enhancement: Ability to add CSS Classes on Header/Column
+- Bug: Fix CPU Perf on Resort (#409)
+- Chore: Upgrade to Angular ^2.4.3
+- Chore: Correct RxJS Imports
+
 ## 4.1.0
 - Feature: Adding multi-click selection
 - Bug: Use tracking fn vs inline (#388)

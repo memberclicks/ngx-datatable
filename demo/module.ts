@@ -1,12 +1,11 @@
 import { NgModule, ApplicationRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
+
 import { FormsModule } from '@angular/forms';
+
 
 import { NgxDatatableModule } from '../src';
 import { AppComponent } from './app.component';
-import '../src/components/datatable.scss';
-import '../src/themes/material.scss';
 
 // -- Basic
 import { BasicFixedComponent } from './basic/basic-fixed';
@@ -94,18 +93,4 @@ import { MaterialModule } from '@angular/material';
   imports: [BrowserModule, NgxDatatableModule, MaterialModule.forRoot(), FormsModule],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-
-  constructor(private appRef: ApplicationRef) { }
-
-  hmrOnDestroy(store) {
-    const cmpLocation = this.appRef.components.map(cmp => cmp.location.nativeElement);
-    store.disposeOldHosts = createNewHosts(cmpLocation);
-    removeNgStyles();
-  }
-
-  hmrAfterDestroy(store) {
-    store.disposeOldHosts();
-    delete store.disposeOldHosts;
-  }
-}
+export class AppModule { }
