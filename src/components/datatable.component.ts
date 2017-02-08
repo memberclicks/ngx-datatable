@@ -2,10 +2,13 @@ import {
   Component, Input, Output, ElementRef, EventEmitter, ViewChild,
   HostListener, ContentChildren, OnInit, QueryList, AfterViewInit,
   HostBinding, ContentChild, TemplateRef, IterableDiffer,
-  DoCheck, KeyValueDiffers
+  DoCheck, KeyValueDiffers, ViewEncapsulation
 } from '@angular/core';
 
-import { forceFillColumnWidths, adjustColumnWidths, sortRows } from '../utils';
+import { 
+  forceFillColumnWidths, adjustColumnWidths, sortRows, scrollbarWidth, 
+  setColumnDefaults, throttleable, translateTemplates
+} from '../utils';
 import { ColumnMode, SortType, SelectionType } from '../types';
 import { DataTableBodyComponent } from './body';
 import { DataTableColumnDirective } from './columns';
@@ -50,8 +53,7 @@ import { scrollbarWidth, setColumnDefaults, throttleable, translateTemplates } f
         [columns]="columns"
         [pageSize]="pageSize"
         [offsetX]="offsetX"
-        [rowDetailTemplate]="rowDetailTemplate"
-        [detailRowHeight]="detailRowHeight"
+        [rowDetail]="rowDetail"
         [selected]="selected"
         [innerWidth]="innerWidth"
         [bodyHeight]="bodyHeight"
@@ -63,7 +65,6 @@ import { scrollbarWidth, setColumnDefaults, throttleable, translateTemplates } f
         (activate)="activate.emit($event)"
         (rowContextmenu)="rowContextmenu.emit($event)"
         (select)="onBodySelect($event)"
-        (detailToggle)="detailToggle.emit($event)"
         (scroll)="onBodyScroll($event)">
       </datatable-body>
       <datatable-footer
@@ -83,8 +84,10 @@ import { scrollbarWidth, setColumnDefaults, throttleable, translateTemplates } f
       </datatable-footer>
     </div>
   `,
+  encapsulation: ViewEncapsulation.None,
+  styleUrls: ['./datatable.component.scss'],
   host: {
-    class: 'datatable'
+    class: 'ngx-datatable'
   }
 })
 export class DatatableComponent implements OnInit, AfterViewInit, DoCheck {
@@ -176,15 +179,6 @@ export class DatatableComponent implements OnInit, AfterViewInit, DoCheck {
    * @memberOf DatatableComponent
    */
   @Input() rowHeight: number = 30;
-
-  /**
-   * The detail row height is required especially 
-   * when virtual scroll is enabled.
-   * 
-   * @type {number}
-   * @memberOf DatatableComponent
-   */
-  @Input() detailRowHeight: number = 0;
 
   /**
    * Type of column width distribution formula.
@@ -335,6 +329,7 @@ export class DatatableComponent implements OnInit, AfterViewInit, DoCheck {
   @Input() sorts: any[] = [];
 
   /**
+<<<<<<< HEAD
    * Row detail template
    * 
    * @type {TemplateRef<any>}
@@ -351,6 +346,8 @@ export class DatatableComponent implements OnInit, AfterViewInit, DoCheck {
   @Input() pagerSelectTemplate: TemplateRef<any>;
 
   /**
+=======
+>>>>>>> master
    * Css class overrides
    * 
    * @type {*}
@@ -451,14 +448,6 @@ export class DatatableComponent implements OnInit, AfterViewInit, DoCheck {
    * @memberOf DatatableComponent
    */
   @Output() page: EventEmitter<any> = new EventEmitter();
-
-  /**
-   * Row detail row visbility was toggled.
-   * 
-   * @type {EventEmitter<any>}
-   * @memberOf DatatableComponent
-   */
-  @Output() detailToggle: EventEmitter<any> = new EventEmitter();
 
   /**
    * Columns were re-ordered.
@@ -648,6 +637,8 @@ export class DatatableComponent implements OnInit, AfterViewInit, DoCheck {
    * @memberOf DatatableComponent
    */
   @ContentChild(DatatableRowDetailDirective)
+  rowDetail: DatatableRowDetailDirective;
+<<<<<<< HEAD
   set rowDetailTemplateChild(val: DatatableRowDetailDirective) {
     this._rowDetailTemplateChild = val;
     if(val) this.rowDetailTemplate = val.rowDetailTemplate;
@@ -664,16 +655,6 @@ export class DatatableComponent implements OnInit, AfterViewInit, DoCheck {
     if(val) this.pagerSelectTemplate = val.pagerSelectTemplate;
   }
 
-  /**
-   * Returns the row templates.
-   * 
-   * @readonly
-   * @type {DatatableRowDetailDirective}
-   * @memberOf DatatableComponent
-   */
-  get rowDetailTemplateChild(): DatatableRowDetailDirective {
-    return this._rowDetailTemplateChild;
-  }
   /**
    * Returns the row templates.
    * 
@@ -722,7 +703,6 @@ export class DatatableComponent implements OnInit, AfterViewInit, DoCheck {
   _rows: any[];
   _columns: any[];
   _columnTemplates: QueryList<DataTableColumnDirective>;
-  _rowDetailTemplateChild: DatatableRowDetailDirective;
   _pagerSelectTemplateChild: DatatablePagerSelectDirective;
 
   constructor(element: ElementRef, differs: KeyValueDiffers) {
@@ -765,34 +745,6 @@ export class DatatableComponent implements OnInit, AfterViewInit, DoCheck {
     if (this.rowDiffer.diff(this.rows)) {
       this.recalculatePages();
     }
-  }
-
-  /**
-   * Toggle the expansion of the row
-   *
-   * @param rowIndex
-   */
-  toggleExpandRow(row: any): void {
-    // Should we write a guard here??
-    this.bodyComponent.toggleRowExpansion(row);
-  }
-
-  /**
-   * API method to expand all the rows.
-   * 
-   * @memberOf DatatableComponent
-   */
-  expandAllRows(): void {
-    this.bodyComponent.toggleAllRows(true);
-  }
-
-  /**
-   * API method to collapse all the rows.
-   * 
-   * @memberOf DatatableComponent
-   */
-  collapseAllRows(): void {
-    this.bodyComponent.toggleAllRows(false);
   }
 
   /**

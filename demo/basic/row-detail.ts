@@ -7,22 +7,22 @@ import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
       <h3>
         Row Detail Demo
         <small>
-          <a href="#" (click)="mydatatable.expandAllRows()">Expand All</a> | 
-          <a href="#" (click)="mydatatable.collapseAllRows()">Collapse All</a>
+          <a href="#" (click)="table.rowDetail.expandAllRows()">Expand All</a> | 
+          <a href="#" (click)="table.rowDetail.collapseAllRows()">Collapse All</a>
         </small>
       </h3>
       <ngx-datatable
-        #mydatatable
+        #myTable
         class='material expandable'
         [columnMode]="'force'"
         [headerHeight]="50"
         [footerHeight]="50"
         [rowHeight]="50"
-        [detailRowHeight]="100"
         [scrollbarV]="50"
         [rows]='rows'
         (page)="onPage($event)">
-        <ngx-datatable-row-detail>
+        <!-- Row Detail Template -->
+        <ngx-datatable-row-detail [rowHeight]="100" #myDetailRow (toggle)="onDetailToggle($event)">
           <template let-row="row" ngx-datatable-row-detail-template>
             <div style="padding-left:35px;">
               <div><strong>Address</strong></div>
@@ -30,6 +30,8 @@ import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
             </div>
           </template>
         </ngx-datatable-row-detail>
+
+        <!-- Column Templates -->
          <ngx-datatable-column
           [width]="50"
           [resizeable]="false"
@@ -75,10 +77,10 @@ import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
 })
 export class RowDetailsComponent {
 
-  @ViewChild('mydatatable') table;
+  @ViewChild('myTable') table: any;
 
-  rows = [];
-  expanded = {};
+  rows: any[] = [];
+  expanded: any = {};
   timeout: any;
 
   constructor() {
@@ -107,7 +109,11 @@ export class RowDetailsComponent {
 
   toggleExpandRow(row) {
     console.log('Toggled Expand Row!', row);
-    this.table.toggleExpandRow(row);
+    this.table.rowDetail.toggleExpandRow(row);
+  }
+
+  onDetailToggle(event) {
+    console.log('Detail Toggled', event);
   }
 
 }

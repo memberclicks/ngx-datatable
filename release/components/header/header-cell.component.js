@@ -6,6 +6,7 @@ var DataTableHeaderCellComponent = (function () {
     function DataTableHeaderCellComponent() {
         this.sort = new core_1.EventEmitter();
         this.select = new core_1.EventEmitter();
+        this.sortFn = this.onSort.bind(this);
     }
     Object.defineProperty(DataTableHeaderCellComponent.prototype, "sorts", {
         get: function () {
@@ -26,6 +27,8 @@ var DataTableHeaderCellComponent = (function () {
                 cls += ' sortable';
             if (this.column.resizeable)
                 cls += ' resizeable';
+            if (this.column.cssClasses)
+                cls += ' ' + this.column.cssClasses;
             var sortDir = this.sortDir;
             if (sortDir) {
                 cls += " sort-active sort-" + sortDir;
@@ -65,8 +68,7 @@ var DataTableHeaderCellComponent = (function () {
     });
     Object.defineProperty(DataTableHeaderCellComponent.prototype, "isCheckboxable", {
         get: function () {
-            return;
-            this.column.checkboxable &&
+            return this.column.checkboxable &&
                 this.column.headerCheckboxable &&
                 this.selectionType === types_1.SelectionType.checkbox;
         },
@@ -95,16 +97,19 @@ var DataTableHeaderCellComponent = (function () {
     };
     DataTableHeaderCellComponent.prototype.calcSortClass = function (sortDir) {
         if (sortDir === types_1.SortDirection.asc) {
-            return "sort-asc " + this.sortAscendingIcon;
+            return "sort-btn sort-asc " + this.sortAscendingIcon;
         }
         else if (sortDir === types_1.SortDirection.desc) {
-            return "sort-desc " + this.sortDescendingIcon;
+            return "sort-btn sort-desc " + this.sortDescendingIcon;
+        }
+        else {
+            return "sort-btn";
         }
     };
     DataTableHeaderCellComponent.decorators = [
         { type: core_1.Component, args: [{
                     selector: 'datatable-header-cell',
-                    template: "\n    <div>\n      <label\n        *ngIf=\"isCheckboxable\" \n        class=\"datatable-checkbox\">\n        <input \n          type=\"checkbox\"\n          [attr.checked]=\"allRowsSelected\"\n          (change)=\"select.emit(!allRowsSelected)\" \n        />\n      </label>\n      <span\n        class=\"datatable-header-cell-label draggable\"\n        *ngIf=\"!column.headerTemplate\"\n        (click)=\"onSort()\"\n        [innerHTML]=\"name\">\n      </span>\n      <template\n        *ngIf=\"column.headerTemplate\"\n        [ngTemplateOutlet]=\"column.headerTemplate\"\n        [ngOutletContext]=\"{ \n          column: column, \n          sortDir: sortDir\n        }\">\n      </template>\n      <span\n        class=\"sort-btn\"\n        [class]=\"sortClass\">\n      </span>\n    </div>\n  "
+                    template: "\n    <div>\n      <label\n        *ngIf=\"isCheckboxable\" \n        class=\"datatable-checkbox\">\n        <input \n          type=\"checkbox\"\n          [attr.checked]=\"allRowsSelected\"\n          (change)=\"select.emit(!allRowsSelected)\" \n        />\n      </label>\n      <span class=\"datatable-header-cell-wrapper\">\n        <span\n          class=\"datatable-header-cell-label draggable\"\n          *ngIf=\"!column.headerTemplate\"\n          (click)=\"onSort()\"\n          [innerHTML]=\"name\">\n        </span>\n      </span>\n      <template\n        *ngIf=\"column.headerTemplate\"\n        [ngTemplateOutlet]=\"column.headerTemplate\"\n        [ngOutletContext]=\"{ \n          column: column, \n          sortDir: sortDir,\n          sortFn: sortFn\n        }\">\n      </template>\n      <span\n        [class]=\"sortClass\">\n      </span>\n    </div>\n  "
                 },] },
     ];
     /** @nocollapse */

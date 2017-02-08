@@ -1,5 +1,5 @@
 import {
-  Component, Output, EventEmitter, Input, HostBinding, ViewChild
+  Component, Output, EventEmitter, Input, HostBinding, ViewChild, OnInit, OnDestroy
 } from '@angular/core';
 import { translateXY, columnsByPin, columnGroupWidths, RowHeightCache } from '../../utils';
 import { SelectionType } from '../../types';
@@ -31,7 +31,7 @@ import { ScrollerComponent } from './scroller.component';
         <datatable-row-wrapper
           *ngFor="let row of temp; let i = index; trackBy: rowTrackingFn;"
           [ngStyle]="getRowsStyles(row)"
-          [rowDetailTemplate]="rowDetailTemplate"
+          [rowDetail]="rowDetail"
           [detailRowHeight]="detailRowHeight"
           [row]="row"
           [expanded]="row.$$expanded === 1"
@@ -59,19 +59,18 @@ import { ScrollerComponent } from './scroller.component';
     class: 'datatable-body'
   }
 })
-export class DataTableBodyComponent {
+export class DataTableBodyComponent implements OnInit, OnDestroy {
 
   @Input() scrollbarV: boolean;
   @Input() scrollbarH: boolean;
   @Input() loadingIndicator: boolean;
   @Input() rowHeight: number;
   @Input() offsetX: number;
-  @Input() detailRowHeight: any;
   @Input() emptyMessage: string;
   @Input() selectionType: SelectionType;
   @Input() selected: any[] = [];
   @Input() rowIdentity: any;
-  @Input() rowDetailTemplate: any;
+  @Input() rowDetail: any;
   @Input() selectCheck: any;
   @Input() trackByProp: string;
 
@@ -184,12 +183,18 @@ export class DataTableBodyComponent {
     }
   }
 
+  get detailRowHeight(): number {
+    if(!this.rowDetail) return 0;
+    return this.rowDetail.rowHeight;
+  }
+
   rowHeightsCache: RowHeightCache = new RowHeightCache();
   temp: any[] = [];
   offsetY: number = 0;
   indexes: any = {};
   columnGroupWidths: any;
   rowTrackingFn: any;
+  listener: any;
 
   _rows: any[];
   _bodyHeight: any;
@@ -210,6 +215,29 @@ export class DataTableBodyComponent {
   }
 
   /**
+   * Called after the constructor, initializing input properties
+   * 
+   * @memberOf DataTableBodyComponent
+   */
+  ngOnInit(): void {
+    if(this.rowDetail) {
+      this.listener = this.rowDetail.toggle.subscribe(({ type, value }) => {
+        if(type === 'row') this.toggleRowExpansion(value);
+        if(type === 'all') this.toggleAllRows(value);
+      });
+    }
+  }
+
+  /**
+   * Called once, before the instance is destroyed.
+   * 
+   * @memberOf DataTableBodyComponent
+   */
+  ngOnDestroy(): void {
+    if(this.rowDetail) this.listener.unsubscribe();
+  }
+
+  /**
    * Updates the Y offset given a new offset.
    * 
    * @param {number} [offset]
@@ -217,6 +245,10 @@ export class DataTableBodyComponent {
    * @memberOf DataTableBodyComponent
    */
   updateOffsetY(offset?: number): void {
+    // scroller is missing on empty table
+    if(!this.scroller) {
+        return;
+    }
     if(this.scrollbarV && offset) {
       // First get the row Index that we need to move to.
       const rowIndex = this.pageSize * offset;
