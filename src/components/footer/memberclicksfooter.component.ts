@@ -8,14 +8,14 @@ import {
     <div
       [style.height.px]="footerHeight">
       <div class="page-count">{{rowCount.toLocaleString()}} {{totalMessage}}</div>
-      <div *ngIf="!pagerSelectTemplate && isVisible">
+      <div *ngIf="!pagerSelect?.template && isVisible">
         <select [(ngModel)]="pageSize" (change)="changePageSize($event)">
-          <option *ngFor="let t of pageSizes" [value]="t" [selected]="t === pageSize ? 'selected' : ''">{{t}}</option>
+          <option *ngFor="let t of pageSizes" [value]="t" [selected]="t === (pageSize ? 'selected' : '')">{{t}}</option>
         </select>
       </div>
-      <div *ngIf="pagerSelectTemplate && isVisible">
+      <div *ngIf="isVisible && pagerSelect && pagerSelect.template">
         <template
-          [ngTemplateOutlet]="pagerSelectTemplate"
+          [ngTemplateOutlet]="pagerSelect.template"
           [ngOutletContext]="templateContext">
         </template>
       </div>
@@ -49,7 +49,7 @@ export class DataTableFooterComponent {
   @Input() pagerPreviousIcon: string;
   @Input() pagerNextIcon: string;
   @Input() totalMessage: string;
-  @Input() pagerSelectTemplate: any;
+  @Input() pagerSelect: any;
 
   @Output() page: EventEmitter<any> = new EventEmitter();
 

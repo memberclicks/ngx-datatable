@@ -7,8 +7,4 @@ export class DatatablePagerSelectDirective {
   @ContentChild(DatatablePagerSelectTemplateDirective, { read: TemplateRef }) 
   template: TemplateRef<any>;
 
-  get pagerSelectTemplate(): TemplateRef<any> {
-    return this.template;
-  }
-
 }

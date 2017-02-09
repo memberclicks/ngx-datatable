@@ -14,7 +14,6 @@ import { DataTableBodyComponent } from './body';
 import { DataTableColumnDirective } from './columns';
 import { DatatableRowDetailDirective } from './row-detail';
 import { DatatablePagerSelectDirective } from './pager-select';
-import { scrollbarWidth, setColumnDefaults, throttleable, translateTemplates } from '../utils';
 
 @Component({
   selector: 'ngx-datatable',
@@ -79,7 +78,7 @@ import { scrollbarWidth, setColumnDefaults, throttleable, translateTemplates } f
         [pagerRightArrowIcon]="cssClasses.pagerRightArrow"
         [pagerPreviousIcon]="cssClasses.pagerPrevious"
         [pagerNextIcon]="cssClasses.pagerNext"
-        [pagerSelectTemplate]="pagerSelectTemplate"
+        [pagerSelect]="pagerSelect"
         (page)="onFooterPage($event)">
       </datatable-footer>
     </div>
@@ -328,26 +327,9 @@ export class DatatableComponent implements OnInit, AfterViewInit, DoCheck {
    */
   @Input() sorts: any[] = [];
 
-  /**
-<<<<<<< HEAD
-   * Row detail template
-   * 
-   * @type {TemplateRef<any>}
-   * @memberOf DatatableComponent
-   */
-  @Input() rowDetailTemplate: TemplateRef<any>;
+
 
   /**
-   * Pager select template
-   * 
-   * @type {TemplateRef<any>}
-   * @memberOf DatatableComponent
-   */
-  @Input() pagerSelectTemplate: TemplateRef<any>;
-
-  /**
-=======
->>>>>>> master
    * Css class overrides
    * 
    * @type {*}
@@ -638,33 +620,15 @@ export class DatatableComponent implements OnInit, AfterViewInit, DoCheck {
    */
   @ContentChild(DatatableRowDetailDirective)
   rowDetail: DatatableRowDetailDirective;
-<<<<<<< HEAD
-  set rowDetailTemplateChild(val: DatatableRowDetailDirective) {
-    this._rowDetailTemplateChild = val;
-    if(val) this.rowDetailTemplate = val.rowDetailTemplate;
-  }
 
   /**
-   * Pager Select templates gathered from the ContentChild
+   * Row Detail templates gathered from the ContentChild
    * 
    * @memberOf DatatableComponent
    */
   @ContentChild(DatatablePagerSelectDirective)
-  set pagerSelectTemplateChild(val: DatatablePagerSelectDirective) {
-    this._pagerSelectTemplateChild = val;
-    if(val) this.pagerSelectTemplate = val.pagerSelectTemplate;
-  }
+  pagerSelect: DatatablePagerSelectDirective;
 
-  /**
-   * Returns the row templates.
-   * 
-   * @readonly
-   * @type {DatatableRowDetailDirective}
-   * @memberOf DatatableComponent
-   */
-  get pagerSelectTemplateChild(): DatatablePagerSelectDirective {
-    return this._pagerSelectTemplateChild;
-  }
 
   /**
    * Reference to the body component for manually
