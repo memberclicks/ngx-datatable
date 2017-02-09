@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChildren, QueryList } from '@angular/core';
+import { MdMenuTrigger } from '@angular/material';
 
 @Component({
   selector: 'row-hover-demo',
@@ -11,11 +12,13 @@ import { Component } from '@angular/core';
         [headerHeight]="50"
         [footerHeight]="50"
         [rowHeight]="'auto'"
-        [rows]="rows"
-        [showOnHover]="true">
-        <ngx-datatable-row-hover>
-          <template ngx-datatable-row-hover-template>
+        [rows]="rows">
+        <ngx-datatable-row-hover [showOnHover]="true">
+          <template ngx-datatable-row-hover-template let-parent="parent">
             <button md-raised-button color="primary">Action</button>
+            <button md-raised-button [mdMenuTriggerFor]="menu" (click)="disableRow(parent)">
+               Menu
+            </button>
           </template>
         </ngx-datatable-row-hover>
         <ngx-datatable-column name="Name" [flexGrow]="3">
@@ -35,16 +38,33 @@ import { Component } from '@angular/core';
         </ngx-datatable-column>
       </ngx-datatable>
     </div>
+    <md-menu #menu="mdMenu">
+      <button md-menu-item> Refresh </button>
+      <button md-menu-item> Settings </button>
+      <button md-menu-item> Help </button>
+      <button md-menu-item disabled> Sign Out </button>
+  </md-menu>
   `
 })
 export class RowHoversComponent {
 
   rows = [];
+  lastRowHovered;
+  private subscription;
+  private triggerChildren = [];
+  @ViewChildren(MdMenuTrigger) trigger: QueryList<MdMenuTrigger>;
 
   constructor() {
     this.fetch((data) => {
       this.rows = data.splice(0, 5);
     });
+
+  }
+
+
+  disableRow(row){
+     this.lastRowHovered = row;
+     row.disableHover();
   }
 
   fetch(cb) {
@@ -56,6 +76,19 @@ export class RowHoversComponent {
     };
 
     req.send();
+  }
+  ngAfterViewInit(){
+    this.subscription = this.trigger.changes.subscribe( (list) => {
+      this.triggerChildren.forEach((item) => item.unsubscribe());
+      this.triggerChildren = [];
+       if(list.length){
+          list.forEach((item) => this.triggerChildren.push(item.onMenuClose.subscribe((val) => this.lastRowHovered.enableHover())));
+       }
+    });
+  }
+  ngOnDestroy(){
+    this.triggerChildren.forEach((item) => item.unsubscribe());
+    this.subscription.unsubscribe();
   }
 
 }

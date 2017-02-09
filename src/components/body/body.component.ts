@@ -36,7 +36,7 @@ import { ScrollerComponent } from './scroller.component';
           [row]="row"
           [expanded]="row.$$expanded === 1"
           (rowContextmenu)="rowContextmenu.emit($event)">
-            <datatable-row-hover [showTemplate]="showOnHover" [rowHoverTemplate]="rowHoverTemplate">
+            <datatable-row-hover [showOnHover]="showHoverRow" [rowHover]="rowHover">
               <datatable-body-row
                 tabindex="-1"
                 [isSelected]="selector.getRowSelected(row)"
@@ -75,8 +75,7 @@ export class DataTableBodyComponent implements OnInit, OnDestroy {
   @Input() rowDetail: any;
   @Input() selectCheck: any;
   @Input() trackByProp: string;
-  @Input() showOnHover : boolean;
-  @Input() rowHoverTemplate : any;
+  @Input() rowHover : any;
 
   @Input() set pageSize(val: number) {
     this._pageSize = val;
@@ -190,6 +189,11 @@ export class DataTableBodyComponent implements OnInit, OnDestroy {
   get detailRowHeight(): number {
     if(!this.rowDetail) return 0;
     return this.rowDetail.rowHeight;
+  }
+
+  get showHoverRow(): boolean {
+    if(!this.rowHover) return false;
+    return this.rowHover.showOnHover;
   }
 
   rowHeightsCache: RowHeightCache = new RowHeightCache();

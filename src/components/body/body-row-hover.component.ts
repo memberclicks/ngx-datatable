@@ -7,40 +7,33 @@ import {
   template: `
     <ng-content></ng-content>
     <div 
-      *ngIf="hoverEnabled"
-      [style.height.px]="detailRowHeight" 
-      class="datatable-row-hover">
+      *ngIf="showOnHover" 
+      class="datatable-row-hover hover-enabled" [ngClass]="{'hover-enabled' : hoverEnabled}">
       <template
-        *ngIf="rowHoverTemplate"
-        [ngTemplateOutlet]="rowHoverTemplate">
+        *ngIf="rowHover && rowHover.template"
+        [ngTemplateOutlet]="rowHover.template"
+        [ngOutletContext]="contextObject">
       </template>
     </div>
-  `
+  `,
+  host: {
+    class: 'datatable-body-row-hover'
+  }
 })
-export class DataTableRowHoverComponent implements OnInit, OnDestroy {
+export class DataTableRowHoverComponent {
 
-  @Input() rowHoverTemplate: any;
-  @Input() showTemplate: boolean = false;
-  hoverEnabled: boolean = false;
+  @Input() rowHover: any;
+  @Input() showOnHover: boolean = true;
+  hoverEnabled: boolean = true;
   enterCallback: Function;
   leaveCallback: Function;
-
-  constructor( private renderer : Renderer, private el : ElementRef){
-  }
-
-  ngOnInit(){
-    if(this.showTemplate && this.rowHoverTemplate){
-        this.enterCallback = this.renderer.listen(this.el.nativeElement, "mouseenter", ( event ) => this.hoverEnabled = true );
-        this.leaveCallback = this.renderer.listen(this.el.nativeElement, "mouseleave", ( event ) => this.hoverEnabled = false );
+  private enableMouseEvents: boolean = true;
+  contextObject = {
+    parent : {
+      disableHover : () => this.hoverEnabled = false,
+      enableHover : () => this.hoverEnabled = true
     }
   }
-  ngOnDestroy(){
-    /**
-     * Cleanup listeners for hover on destroy to avoid memory leaks
-     */
-    if(this.enterCallback != null && this.leaveCallback != null){
-      this.enterCallback();
-      this.leaveCallback();
-    }
-  }
+
+
 }

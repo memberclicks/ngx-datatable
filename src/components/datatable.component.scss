@@ -266,3 +266,10 @@
     }
   }
 }
+
+.datatable-body-row-hover .datatable-row-hover.hover-enabled{
+  display : none;
+}
+.datatable-body-row-hover:hover .datatable-row-hover.hover-enabled{
+  display : block;
+}
