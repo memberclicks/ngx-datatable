@@ -8,16 +8,20 @@
    * [Getting Started](introduction/getting-started.md)
 * API
    * Table
-      * [Inputs](api/table-inputs.md)
-      * [Outputs](api/table-outputs.md)
-      * [Methods](api/table-fns.md)
-      * [Internals](api/table-internals.md)
-   * [Column](api/column-options.md)
-      * [Column Modes](api/column-modes.md)
-      * [Internals](api/column-internals.md)
+      * [Inputs](api/table/inputs.md)
+      * [Outputs](api/table/outputs.md)
+      * [Methods](api/table/methods.md)
+      * [Internals](api/table/internals.md)
+   * Column
+      * [Inputs](api/column/inputs.md)
+      * [Modes](api/column/modes.md)
+      * [Internals](api/column/internals.md)
+   * Row Detail
+      * [Inputs](api/detail/inputs.md)
+      * [Outputs](api/detail/outputs.md)
 * Demos
-    * [Online](http://swimlane.github.io/angular2-data-table/)
-    * [Source Code](https://github.com/swimlane/angular2-data-table/tree/master/demo)
+    * [Online](http://swimlane.github.io/ngx-datatable/)
+    * [Source Code](https://github.com/swimlane/ngx-datatable/tree/master/demo)
 * Contributing
    * [Building](contributing/building.md)
    * [Guidelines](contributing/guidelines.md)
