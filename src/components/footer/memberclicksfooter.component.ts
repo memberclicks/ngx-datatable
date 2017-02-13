@@ -20,10 +20,6 @@ import {
         </template>
       </div>
       <datatable-pager
-        [pagerLeftArrowIcon]="pagerLeftArrowIcon"
-        [pagerRightArrowIcon]="pagerRightArrowIcon"
-        [pagerPreviousIcon]="pagerPreviousIcon"
-        [pagerNextIcon]="pagerNextIcon"
         [page]="curPage"
         [size]="pageSize"
         [count]="rowCount"
@@ -38,6 +34,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DataTableFooterComponent {
+
 
   @Input() footerHeight: number;
   @Input() rowCount: number;
@@ -64,6 +61,7 @@ export class DataTableFooterComponent {
   }
 
   get curPage(): number {
+    //this.offset = isNaN(this.offset)?0:this.offset;
     return this.offset + 1;
   }
 

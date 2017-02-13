@@ -846,7 +846,7 @@ export class DatatableComponent implements OnInit, AfterViewInit, DoCheck {
       this.recalculate();
     }
     this.bodyComponent.updateOffsetY(this.offset);
-
+console.log("the count from onfooterpage",this.count);
     this.page.emit({
       count: this.count,
       pageSize: this.pageSize,

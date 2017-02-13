@@ -6,44 +6,13 @@ import {
   selector: 'datatable-pager',
   template: `
     <ul class="pager">
-      <li [class.disabled]="!canPrevious()">
-        <a
-          href="javascript:void(0)"
-          (click)="selectPage(1)">
-          <i class="{{pagerPreviousIcon}}"></i>
-        </a>
+   
+      <li><select [(ngModel)]="page" (change)="selectPage($event)"> // value is a string or number
+    <option *ngFor="let pg of pages" [value]=pg.number [selected]="pg.number === 1? selected:''">{{pg.text}}</option>
+</select>
+
       </li>
-      <li [class.disabled]="!canPrevious()">
-        <a
-          href="javascript:void(0)"
-          (click)="prevPage()">
-          <i class="{{pagerLeftArrowIcon}}"></i>
-        </a>
-      </li>
-      <li
-        class="pages"
-        *ngFor="let pg of pages"
-        [class.active]="pg.number === page">
-        <a
-          href="javascript:void(0)"
-          (click)="selectPage(pg.number)">
-          {{pg.text}}
-        </a>
-      </li>
-      <li [class.disabled]="!canNext()">
-        <a
-          href="javascript:void(0)"
-          (click)="nextPage()">
-          <i class="{{pagerRightArrowIcon}}"></i>
-        </a>
-      </li>
-      <li [class.disabled]="!canNext()">
-        <a
-          href="javascript:void(0)"
-          (click)="selectPage(totalPages)">
-          <i class="{{pagerNextIcon}}"></i>
-        </a>
-      </li>
+      
     </ul>
   `,
   host: {
@@ -100,23 +69,8 @@ export class DataTablePagerComponent {
   _size: number = 0;
   pages: any;
 
-  canPrevious(): boolean {
-    return this.page > 1;
-  }
-
-  canNext(): boolean {
-    return this.page < this.totalPages;
-  }
-
-  prevPage(): void {
-    this.selectPage(this.page - 1);
-  }
-
-  nextPage(): void {
-    this.selectPage(this.page + 1);
-  }
-
-  selectPage(page: number): void {
+  selectPage(page): void {
+    page = Number(page.target.value);
     if (page > 0 && page <= this.totalPages && page !== this.page) {
       this.page = page;
       this.change.emit({
@@ -129,11 +83,11 @@ export class DataTablePagerComponent {
     let pages = [];
     let startPage = 1;
     let endPage = this.totalPages;
-    let maxSize = 5;
-    const isMaxSized = maxSize < this.totalPages;
-
+    let maxSize = this.totalPages;
+    const isMaxSized = maxSize <= this.totalPages;
+    
     page = page || this.page;
-
+console.log(typeof page, page)
     if (isMaxSized) {
       startPage = ((Math.ceil(page / maxSize) - 1) * maxSize) + 1;
       endPage = Math.min(startPage + maxSize - 1, this.totalPages);

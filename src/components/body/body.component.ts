@@ -318,7 +318,7 @@ export class DataTableBodyComponent implements OnInit, OnDestroy {
     let rowIndex = first;
     let idx = 0;
     let temp: any[] = [];
-
+console.log('updating',this.indexes);
     while (rowIndex < last && rowIndex < this.rowCount) {
       let row = this.rows[rowIndex];
 
