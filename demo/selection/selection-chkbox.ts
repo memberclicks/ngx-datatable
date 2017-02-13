@@ -18,7 +18,7 @@ import { Component } from '@angular/core';
           class="material"
           [rows]="rows"
           [columnMode]="'force'"
-          [headerHeight]="50"
+          [headerHeight]="56"
           [footerHeight]="50"
           [rowHeight]="'auto'"
           [limit]="5"
@@ -27,7 +27,7 @@ import { Component } from '@angular/core';
           (activate)="onActivate($event)"
           (select)='onSelect($event)'>
           <ngx-datatable-column
-            [width]="30"
+            [width]="68"
             [sortable]="false"
             [canAutoResize]="false"
             [draggable]="false"
