@@ -140,7 +140,7 @@ export class DataTableHeaderCellComponent {
     } else if(sortDir === SortDirection.desc) {
       return `sort-btn sort-desc ${this.sortDescendingIcon}`;
     } else {
-      return `sort-btn`;
+      return `sort-btn sort-asc sort-asc-preview ${this.sortAscendingIcon}`;
     }
   }
 

@@ -10,8 +10,8 @@ import { Component } from '@angular/core';
         [rows]="rows"
         [columns]="[{name:'Name'},{name:'Gender'},{name:'Company'}]"
         [columnMode]="'force'"
-        [headerHeight]="50"
-        [footerHeight]="50"
+        [headerHeight]="56"
+        [footerHeight]="56"
         [rowHeight]="'auto'"
         [limit]="10">
       </ngx-datatable>
