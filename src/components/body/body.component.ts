@@ -206,6 +206,7 @@ export class DataTableBodyComponent implements OnInit, OnDestroy {
   constructor() {
     // declare fn here so we can get access to the `this` property
     this.rowTrackingFn = function(index: number, row: any): any {
+
       if(this.trackByProp) {
         return `${row.$$index}-${this.trackByProp}`;
       } else {
@@ -318,7 +319,7 @@ export class DataTableBodyComponent implements OnInit, OnDestroy {
     let rowIndex = first;
     let idx = 0;
     let temp: any[] = [];
-console.log('updating',this.indexes);
+
     while (rowIndex < last && rowIndex < this.rowCount) {
       let row = this.rows[rowIndex];
 
@@ -407,7 +408,6 @@ console.log('updating',this.indexes);
   updateIndexes(): void {
     let first = 0;
     let last = 0;
-
     if (this.scrollbarV) {
       // Calculation of the first and last indexes will be based on where the
       // scrollY position would be at.  The last index would be the one
@@ -419,7 +419,6 @@ console.log('updating',this.indexes);
       first = Math.max(this.offset * this.pageSize, 0);
       last = Math.min((first + this.pageSize), this.rowCount);
     }
-
     this.indexes = { first, last };
   }
 

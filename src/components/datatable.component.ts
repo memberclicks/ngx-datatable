@@ -811,7 +811,6 @@ export class DatatableComponent implements OnInit, AfterViewInit, DoCheck {
    */
   onBodyPage({ offset }: any): void {
     this.offset = offset;
-
     this.page.emit({
       count: this.count,
       pageSize: this.pageSize,
@@ -840,13 +839,13 @@ export class DatatableComponent implements OnInit, AfterViewInit, DoCheck {
    * @memberOf DatatableComponent
    */
   onFooterPage(event: any) {
-    this.offset = event.page - 1;
+    //event is changed from a custom object to an Event object
+    this.offset = (typeof event.page === "undefined")?this.offset:event.page-1;
     if(event.pageSize !== undefined){
       this.limit = event.pageSize;
       this.recalculate();
     }
     this.bodyComponent.updateOffsetY(this.offset);
-console.log("the count from onfooterpage",this.count);
     this.page.emit({
       count: this.count,
       pageSize: this.pageSize,

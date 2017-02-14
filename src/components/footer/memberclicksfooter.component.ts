@@ -20,6 +20,10 @@ import {
         </template>
       </div>
       <datatable-pager
+      [pagerLeftArrowIcon]="pagerLeftArrowIcon"
+        [pagerRightArrowIcon]="pagerRightArrowIcon"
+        [pagerPreviousIcon]="pagerPreviousIcon"
+        [pagerNextIcon]="pagerNextIcon"
         [page]="curPage"
         [size]="pageSize"
         [count]="rowCount"
@@ -62,6 +66,7 @@ export class DataTableFooterComponent {
 
   get curPage(): number {
     //this.offset = isNaN(this.offset)?0:this.offset;
+
     return this.offset + 1;
   }
 

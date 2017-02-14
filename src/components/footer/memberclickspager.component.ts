@@ -6,13 +6,25 @@ import {
   selector: 'datatable-pager',
   template: `
     <ul class="pager">
-   
-      <li><select [(ngModel)]="page" (change)="selectPage($event)"> // value is a string or number
-    <option *ngFor="let pg of pages" [value]=pg.number [selected]="pg.number === 1? selected:''">{{pg.text}}</option>
+   <li>Pages </li>
+      <li [class]="pages"><select [(ngModel)]="page" (change)="selectPage($event.target.value)"> // value is a string or number
+    <option *ngFor="let pg of pages" [value]="pg">{{pg.toString()}}</option>
 </select>
-
+      </li><li>of {{totalPages}}</li>
+      <li [class.disabled]="!canPrevious()">
+        <a
+          href="javascript:void(0)"
+          (click)="prevPage()">
+          <i class="{{pagerLeftArrowIcon}}"></i>
+        </a>
       </li>
-      
+      <li [class.disabled]="!canNext()">
+        <a
+          href="javascript:void(0)"
+          (click)="nextPage()">
+          <i class="{{pagerRightArrowIcon}}"></i>
+        </a>
+      </li>
     </ul>
   `,
   host: {
@@ -26,7 +38,7 @@ export class DataTablePagerComponent {
   @Input() pagerRightArrowIcon: string;
   @Input() pagerPreviousIcon: string;
   @Input() pagerNextIcon: string;
-
+  
   @Input()
   set size(val: number) {
     this._size = val;
@@ -69,10 +81,27 @@ export class DataTablePagerComponent {
   _size: number = 0;
   pages: any;
 
+  canPrevious(): boolean {
+    return this.page > 1;
+  }
+
+  canNext(): boolean {
+    return this.page < this.totalPages;
+  }
+
+  prevPage(): void {
+    this.selectPage(this.page - 1);
+  }
+
+  nextPage(): void {
+    this.selectPage(this.page + 1);
+  }
+
   selectPage(page): void {
-    page = Number(page.target.value);
+    page = Number(page);
     if (page > 0 && page <= this.totalPages && page !== this.page) {
       this.page = page;
+      let pg = this;
       this.change.emit({
         page
       });
@@ -85,19 +114,14 @@ export class DataTablePagerComponent {
     let endPage = this.totalPages;
     let maxSize = this.totalPages;
     const isMaxSized = maxSize <= this.totalPages;
-    
     page = page || this.page;
-console.log(typeof page, page)
     if (isMaxSized) {
       startPage = ((Math.ceil(page / maxSize) - 1) * maxSize) + 1;
       endPage = Math.min(startPage + maxSize - 1, this.totalPages);
     }
 
     for (let num = startPage; num <= endPage; num++) {
-      pages.push({
-        number: num,
-        text: <string><any>num
-      });
+      pages.push(num);
     }
 
     return pages;
