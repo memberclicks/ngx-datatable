@@ -132,7 +132,6 @@
 
     .datatable-header-cell {
       text-align: left;
-      padding: .5rem 1.2rem;
       font-weight: 400;
       color: #757575;
       vertical-align: bottom;
@@ -190,7 +189,6 @@
 	  .datatable-body-row {
 	    .datatable-body-cell {
 	      text-align: left;
-	      padding: .5rem 1.2rem;
 	      vertical-align: top;
 	      border-top: 0;
 
@@ -257,8 +255,9 @@
 		}
 
 		.datatable-pager {
-			margin: 0 10px;
+			//margin: 0 10px;
 	    //line-height: 50px;
+			padding-right:24px;
 
 			li {
 	    	vertical-align: middle;
