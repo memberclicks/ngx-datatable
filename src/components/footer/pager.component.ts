@@ -135,7 +135,6 @@ export class DataTablePagerComponent {
     const isMaxSized = maxSize < this.totalPages;
 
     page = page || this.page;
-console.log(page, this.page);
     if (isMaxSized) {
       startPage = ((Math.ceil(page / maxSize) - 1) * maxSize) + 1;
       endPage = Math.min(startPage + maxSize - 1, this.totalPages);

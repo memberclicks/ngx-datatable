@@ -28,7 +28,7 @@ import {
         [size]="pageSize"
         [count]="rowCount"
         [hidden]="!isVisible"
-        (change)="page.emit($event)">
+        (btnchange)="page.emit($event)">
        </datatable-pager>
      </div>
   `,

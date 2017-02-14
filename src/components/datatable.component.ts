@@ -840,7 +840,7 @@ export class DatatableComponent implements OnInit, AfterViewInit, DoCheck {
    */
   onFooterPage(event: any) {
     //event is changed from a custom object to an Event object
-    this.offset = (typeof event.page === "undefined")?this.offset:event.page-1;
+    this.offset = event.page-1;
     if(event.pageSize !== undefined){
       this.limit = event.pageSize;
       this.recalculate();

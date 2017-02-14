@@ -73,8 +73,8 @@ export class DataTablePagerComponent {
     const count = this.size < 1 ? 1 : Math.ceil(this.count / this.size);
     return Math.max(count || 0, 1);
   }
-
-  @Output() change: EventEmitter<any> = new EventEmitter();
+//Change Output 'change' EventEmitter to btn
+  @Output() btnchange: EventEmitter<any> = new EventEmitter();
 
   _count: number = 0;
   _page: number = 1;
@@ -101,8 +101,7 @@ export class DataTablePagerComponent {
     page = Number(page);
     if (page > 0 && page <= this.totalPages && page !== this.page) {
       this.page = page;
-      let pg = this;
-      this.change.emit({
+      this.btnchange.emit({
         page
       });
     }
