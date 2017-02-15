@@ -1,4 +1,14 @@
+/**
+* Material Specific Variables
+*/
+$material-padding: 24px;
+$header-height: 56px;
+$row-height: 48px;
+
+
 .ngx-datatable {
+
+
   display: block;
   overflow:hidden;
   justify-content: center;
@@ -263,5 +273,100 @@
         }
       }
     }
+  }
+}
+
+
+/**
+* Material Design Stylings for NGX Table
+*/
+.ngx-datatable{
+	/**
+	*Header Material Stylings
+	*/
+  .datatable-header{
+    font: 12px Roboto, Noto, 'sans-serif';
+    font-weight: normal;
+    color: rgba(0, 0, 0, .54);
+    height: $header-height;
+    vertical-align: middle;
+  }
+	.datatable-header-cell {
+		&:first-child{
+			padding-left: $material-padding;
+		}
+		&:last-child{
+			padding-right: $material-padding;
+		}
+    &:not(:hover){
+      span.sort-btn.sort-asc-preview:before{
+        content: none;
+      }
+    }
+		span.datatable-header-cell-wrapper {
+			height: $header-height;
+			span.datatable-header-cell-label{
+				vertical-align: middle;
+				height: $header-height;
+				display: table-cell;
+				font: 12px Roboto, Noto, sans-serif;
+				color: rgba(0,0,0, .54);
+			}
+		}
+		span.sort-btn {
+			font: 16px Roboto, Noto, sans-serif;
+			color: rgba(0, 0, 0, .54);
+		}
+
+		&.sort-active{
+			span.datatable-header-cell-wrapper {
+				height: $header-height;
+				span.datatable-header-cell-label{
+					font-weight: bold;
+					color: rgba(0,0,0, .87);
+				}
+			}
+			span.sort-btn {
+				font-size: 16px;
+				font-weight:bold;
+				color: rgba(0, 0, 0, .87);
+			}
+		}
+	}
+
+
+  .datatable-body{
+    .datatable-body-row{
+      font: 13px Roboto, Noto, 'sans-serif';
+      font-weight: normal;
+      color: rgba(0, 0, 0, .87);
+      height: $row-height;
+      vertical-align: middle;
+      border-bottom: 1px solid rgb(224, 224, 224);
+      .datatable-body-cell, .datatable-body-cell *{
+          height : $row-height;
+          vertical-align: middle;
+          display: table-cell;
+      }
+    }
+    .datatable-body-row-hover .datatable-row-hover.hover-enabled{
+      display : none;
+    }
+    .datatable-body-row-hover:hover .datatable-row-hover.hover-enabled{
+      display : block;
+    }
+  }
+
+	.datatable-body-cell {
+		&:first-child {
+			padding-left: $material-padding;
+		}
+		&:last-child {
+			padding-right: $material-padding;
+		}
+	}
+  .datatable-footer {
+    padding-right: $material-padding;
+    padding-left: $material-padding;
   }
 }

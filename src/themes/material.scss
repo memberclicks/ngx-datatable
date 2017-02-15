@@ -1,9 +1,4 @@
 .ngx-datatable.material {
-	background:#FFF;
-  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24);
-  -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24);
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24);
-
 	&.striped {
 		.datatable-row-odd {
 			background: #eee;
@@ -38,12 +33,14 @@
     .datatable-body-row {
       &:hover,
 			&:hover .datatable-row-group {
-	      background-color: #eee;
+	      background-color: #EDFFE4;
 	      transition-property: background;
 	      transition-duration: .3s;
 	      transition-timing-function: linear;
 	    }
-
+ a{
+	 color: #30A800;
+ }
 			&:focus,
 			&:focus .datatable-row-group {
 				background-color: #ddd;
@@ -128,14 +125,19 @@
 	 * Header Styles
 	 */
 	.datatable-header {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    width: 1160px;
+height: 50px;
+background-color: #6E6E6E;
 
     .datatable-header-cell {
       text-align: left;
-      padding: .5rem 1.2rem;
       font-weight: 400;
-      color: #757575;
+      color: #FFFFFF;
       vertical-align: bottom;
+			font-family: Roboto;
+font-size: 12px;
+font-weight: bold;
+line-height: 14px;
 
       .datatable-header-cell-wrapper {
         position: relative;
@@ -144,7 +146,7 @@
 			&.longpress {
         .draggable::after {
           transition: transform 400ms ease, opacity 400ms ease;
-          opacity: .5;
+          opacity: 0.75;
           transform: scale(1);
         }
 			}
@@ -190,7 +192,6 @@
 	  .datatable-body-row {
 	    .datatable-body-cell {
 	      text-align: left;
-	      padding: .5rem 1.2rem;
 	      vertical-align: top;
 	      border-top: 0;
 
@@ -247,9 +248,14 @@
 	 * Footer Styles
 	 */
 	.datatable-footer {
-		border-top: 1px solid rgba(0, 0, 0, 0.12);
 		font-size:16px;
-
+				select{
+					width: 53px;
+height: 40px;
+border: none;
+background-color: #FFFFFF;
+				margin-top:39px;
+				}
 		.page-count{
 			line-height: 50px;
 			height:50px;
@@ -257,7 +263,7 @@
 		}
 
 		.datatable-pager {
-			margin: 0 10px;
+			//margin: 0 10px;
 	    //line-height: 50px;
 
 			li {
@@ -273,26 +279,26 @@
 					font-weight: bold;
 				}
 			}
-
-			a {
-				height: 22px;
-				min-width: 24px;
-				line-height: 22px;
-				padding: 0 6px;
-				border-radius: 3px;
-				margin: 6px 3px;
-				text-align: center;
-				vertical-align: top;
-				color: rgba(0,0,0,.54);
-				text-decoration: none;
-		    vertical-align: bottom;
-
-				&:hover{
+			.pager {
+	
+.icon-left, .icon-right{
+	          width: 40px;
+height: 40px;
+background-color: #F1F1F1;
+border: 1px solid rgba(0,0,0,0.2);
+border-radius: 2px;
+padding: 10px;
+display: block;
+&:hover{
 					color: rgba(0,0,0,.75);
-					background-color: rgba(158,158,158,0.2);
+					background-color: rgba(158,158,158,0.5);
 				}
+				a{
+					margin: auto 0;
+					padding: 8px;
+				}
+}
 			}
-
 			.icon-left,
 			.icon-skip,
 			.icon-right,
@@ -374,4 +380,3 @@
     transform: translateX(-50%) scale(0, 1); 
   } 
 }
-@import '~@angular/material/core/theming/prebuilt/deeppurple-amber.css';
