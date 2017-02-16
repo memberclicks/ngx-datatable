@@ -6,10 +6,9 @@ import {
   selector: 'datatable-pager',
   template: `
     <ul class="pager">
-   <li>Pages </li>
-      <li [class]="pages"><select [(ngModel)]="page" (change)="selectPage($event.target.value)"> // value is a string or number
+   <li [class]="pages">Pages <select class="selection" [(ngModel)]="page" (change)="selectPage($event.target.value)"> // value is a string or number
     <option *ngFor="let pg of pages" [value]="pg">{{pg.toString()}}</option>
-</select>
+</select> of <span class="totpg">{{totalPages}}</span>
       </li><li>of {{totalPages}}</li>
       <li [class.disabled]="!canPrevious()">
         <a
