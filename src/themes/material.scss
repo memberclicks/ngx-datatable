@@ -248,14 +248,16 @@ line-height: 14px;
 	 * Footer Styles
 	 */
 	.datatable-footer {
-		font-size:16px;
+		font-size:12px;
+		font-weight: 300;
+		margin-top:39px;
 				select{
 					width: 53px;
 height: 40px;
 border: none;
 background-color: #FFFFFF;
-				margin-top:39px;
 				}
+
 		.page-count{
 			line-height: 50px;
 			height:50px;
@@ -268,7 +270,7 @@ background-color: #FFFFFF;
 
 			li {
 	    	vertical-align: middle;
-
+				
 				&.disabled a{
 					color:rgba(0, 0, 0, 0.26) !important;
 					background-color: transparent !important;
@@ -280,7 +282,12 @@ background-color: #FFFFFF;
 				}
 			}
 			.pager {
-	
+				li{
+					margin-right:16px;
+				}
+	.totpg{
+		font-weight:800;
+	}
 .icon-left, .icon-right{
 	          width: 40px;
 height: 40px;
@@ -328,7 +335,6 @@ display: block;
     margin: 0 1rem 0 0;
     cursor: pointer;
     outline:none;
-
     &:before {
       -webkit-transition: all 0.3s ease-in-out;
       -moz-transition: all 0.3s ease-in-out;
@@ -337,8 +343,8 @@ display: block;
       position: absolute;
       left: 0;
       z-index: 1;
-      width: 1rem;
-      height: 1rem;
+      width: 1.125rem;
+      height: 1.125rem;
       border: 2px solid #f2f2f2;
     }
 
@@ -348,7 +354,7 @@ display: block;
       -ms-transform: rotate(-45deg);
       transform: rotate(-45deg);
       height: .5rem;
-      border-color: #009688;
+      background-color: #6CC24A;
       border-top-style: none;
       border-right-style: none;
     }
@@ -358,14 +364,21 @@ display: block;
       position: absolute;
       top: 0;
       left: 0;
-      width: 1rem;
-      height: 1rem;
+      width: 1.125rem;
+      height: 1.125rem;
       background: #fff;
       cursor: pointer;
     }
   }
 }
-
+input[id^='input-md-checkbox']{
+display: none;
+width: 18px;
+height: 18px;
+}
+datatable-body-row[ng-reflect-is-selected='true']{
+	background-color: #F1F1F1;
+}
 /**
  * Progress bar animations
  */
@@ -380,3 +393,5 @@ display: block;
     transform: translateX(-50%) scale(0, 1); 
   } 
 }
+
+@import '~@angular/material/core/theming/prebuilt/purple-green.css';

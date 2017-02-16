@@ -287,7 +287,6 @@ $row-height: 48px;
   .datatable-header{
     font: 12px Roboto, Noto, 'sans-serif';
     font-weight: normal;
-    color: rgba(0, 0, 0, .54);
     height: $header-height;
     vertical-align: middle;
   }
@@ -310,12 +309,10 @@ $row-height: 48px;
 				height: $header-height;
 				display: table-cell;
 				font: 12px Roboto, Noto, sans-serif;
-				color: rgba(0,0,0, .54);
 			}
 		}
 		span.sort-btn {
 			font: 16px Roboto, Noto, sans-serif;
-			color: rgba(0, 0, 0, .54);
 		}
 
 		&.sort-active{
@@ -344,9 +341,8 @@ $row-height: 48px;
       vertical-align: middle;
       border-bottom: 1px solid rgb(224, 224, 224);
       .datatable-body-cell, .datatable-body-cell *{
-          height : $row-height;
-          vertical-align: middle;
-          display: table-cell;
+          margin:auto;
+          vertical-align: top;
       }
     }
     .datatable-body-row-hover .datatable-row-hover.hover-enabled{
