@@ -10,7 +10,7 @@ import { nextSortDir } from '../../utils';
   template: `
     <div>
       <label
-        *ngIf="isCheckboxable" 
+        *ngIf="column.checkboxable && column.headerCheckboxable && selectionType === SelectionType.checkbox && !column.headerCheckboxTemplate" 
         class="datatable-checkbox">
         <input 
           type="checkbox"
@@ -18,6 +18,11 @@ import { nextSortDir } from '../../utils';
           (change)="select.emit(!allRowsSelected)" 
         />
       </label>
+      <template 
+        *ngIf="column.checkboxable && column.headerCheckboxable && selectionType === SelectionType.checkbox && column.headerCheckboxTemplate"
+        [ngTemplateOutlet]="column.headerCheckboxTemplate" 
+        [ngOutletContext]="checkboxObject">
+      </template>
       <span class="datatable-header-cell-wrapper">
         <span
           class="datatable-header-cell-label draggable"
@@ -49,6 +54,7 @@ export class DataTableHeaderCellComponent {
   @Input() sortDescendingIcon: string;
   @Input() allRowsSelected: boolean;
   @Input() selectionType: SelectionType;
+  SelectionType =  SelectionType;
 
   @HostBinding('style.height.px')
   @Input() headerHeight: number;
@@ -140,8 +146,15 @@ export class DataTableHeaderCellComponent {
     } else if(sortDir === SortDirection.desc) {
       return `sort-btn sort-desc ${this.sortDescendingIcon}`;
     } else {
-      return `sort-btn sort-asc sort-asc-preview ${this.sortAscendingIcon}`;
+      //return `sort-btn sort-asc sort-asc-preview ${this.sortAscendingIcon}`;
+      return `sort-btn`;
     }
   }
+
+  checkboxObject = {
+    allRowsSelected : this.allRowsSelected,
+    emit : this.select,
+    parent : this
+  };
 
 }

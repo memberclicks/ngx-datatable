@@ -73,6 +73,7 @@ export class DataTableBodyComponent implements OnInit, OnDestroy {
   @Input() rowDetail: any;
   @Input() selectCheck: any;
   @Input() trackByProp: string;
+  @Input() checkboxTemplate: any;
 
   @Input() set pageSize(val: number) {
     this._pageSize = val;

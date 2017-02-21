@@ -19,7 +19,9 @@ import {
   DataTableSelectionComponent,
   DataTableColumnHeaderDirective,
   DataTableColumnCellDirective,
-  DatatableRowDetailTemplateDirective
+  DatatableRowDetailTemplateDirective,
+  DataTableColumnCheckboxHeaderDirective,
+  DataTableColumnCheckboxCellDirective
 } from './components';
 
 import {
@@ -56,7 +58,9 @@ import {
     DataTableBodyCellComponent,
     DataTableSelectionComponent,
     DataTableColumnHeaderDirective,
-    DataTableColumnCellDirective
+    DataTableColumnCellDirective,
+    DataTableColumnCheckboxHeaderDirective,
+    DataTableColumnCheckboxCellDirective
   ],
   exports: [
     DatatableComponent,
@@ -64,7 +68,9 @@ import {
     DatatableRowDetailTemplateDirective,
     DataTableColumnDirective,
     DataTableColumnHeaderDirective,
-    DataTableColumnCellDirective
+    DataTableColumnCellDirective,
+    DataTableColumnCheckboxHeaderDirective,
+    DataTableColumnCheckboxCellDirective
   ]
 })
 export class NgxDatatableModule { }
