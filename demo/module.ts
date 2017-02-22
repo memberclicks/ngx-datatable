@@ -14,6 +14,7 @@ import { HorzVertScrolling } from './basic/scrolling';
 import { MultipleTablesComponent } from './basic/multiple';
 import { FullScreenComponent } from './basic/fullscreen';
 import { RowDetailsComponent } from './basic/row-detail';
+import { RowHoversComponent } from './basic/row-hover';
 import { FilterBarComponent } from './basic/filter';
 import { TabsDemoComponent } from './basic/tabs';
 import { LiveDataComponent } from './basic/live';
@@ -65,6 +66,7 @@ import { FormsModule } from '@angular/forms';
     HorzVertScrolling,
     MultipleTablesComponent,
     RowDetailsComponent,
+    RowHoversComponent,
     ClientPagingComponent,
     ServerPagingComponent,
     ClientSortingComponent,

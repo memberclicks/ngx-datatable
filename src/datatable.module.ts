@@ -15,13 +15,16 @@ import {
   ProgressBarComponent,
   DataTableBodyCellComponent,
   DatatableRowDetailDirective,
+  DataTableRowHoverComponent,
   ScrollerComponent,
   DataTableSelectionComponent,
   DataTableColumnHeaderDirective,
   DataTableColumnCellDirective,
   DatatableRowDetailTemplateDirective,
   DataTableColumnCheckboxHeaderDirective,
-  DataTableColumnCheckboxCellDirective
+  DataTableColumnCheckboxCellDirective,
+  DatatableRowHoverDirective,
+  DatatableRowHoverTemplateDirective
 } from './components';
 
 import {
@@ -53,6 +56,7 @@ import {
     ProgressBarComponent,
     DataTableBodyRowComponent,
     DataTableRowWrapperComponent,
+    DataTableRowHoverComponent,
     DatatableRowDetailDirective,
     DatatableRowDetailTemplateDirective,
     DataTableBodyCellComponent,
@@ -60,12 +64,16 @@ import {
     DataTableColumnHeaderDirective,
     DataTableColumnCellDirective,
     DataTableColumnCheckboxHeaderDirective,
-    DataTableColumnCheckboxCellDirective
+    DataTableColumnCheckboxCellDirective,
+    DatatableRowHoverDirective,
+    DatatableRowHoverTemplateDirective
   ],
   exports: [
     DatatableComponent,
     DatatableRowDetailDirective,
     DatatableRowDetailTemplateDirective,
+    DatatableRowHoverDirective,
+    DatatableRowHoverTemplateDirective,
     DataTableColumnDirective,
     DataTableColumnHeaderDirective,
     DataTableColumnCellDirective,

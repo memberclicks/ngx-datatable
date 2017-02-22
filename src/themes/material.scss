@@ -143,10 +143,6 @@ line-height: 14px;
         position: relative;
       }
 
-      .datatable-header-cell-wrapper {
-        position: relative;
-      }
-
 			&.longpress {
         .draggable::after {
           transition: transform 400ms ease, opacity 400ms ease;
@@ -400,3 +396,10 @@ datatable-body-row[ng-reflect-is-selected='true']{
 }
 
 @import '~@angular/material/core/theming/prebuilt/purple-green.css';
+.datatable-row-hover{
+	display: block;
+  position: absolute;
+  top: 0;
+	right: 0;
+  padding: 5.27px 1.2rem;
+}

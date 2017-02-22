@@ -13,6 +13,7 @@ import { ColumnMode, SortType, SelectionType } from '../types';
 import { DataTableBodyComponent } from './body';
 import { DataTableColumnDirective } from './columns';
 import { DatatableRowDetailDirective } from './row-detail';
+import { DatatableRowHoverDirective } from './row-hover';
 
 @Component({
   selector: 'ngx-datatable',
@@ -51,6 +52,7 @@ import { DatatableRowDetailDirective } from './row-detail';
         [columns]="columns"
         [pageSize]="pageSize"
         [offsetX]="offsetX"
+        [rowHover]="rowHover"
         [rowDetail]="rowDetail"
         [selected]="selected"
         [innerWidth]="innerWidth"
@@ -607,6 +609,9 @@ export class DatatableComponent implements OnInit, AfterViewInit, DoCheck {
   @ContentChild(DatatableRowDetailDirective)
   rowDetail: DatatableRowDetailDirective;
 
+  @ContentChild(DatatableRowHoverDirective)
+  rowHover: DatatableRowHoverDirective;
+
   /**
    * Reference to the body component for manually
    * invoking functions on the body.
@@ -644,6 +649,7 @@ export class DatatableComponent implements OnInit, AfterViewInit, DoCheck {
   _rows: any[];
   _columns: any[];
   _columnTemplates: QueryList<DataTableColumnDirective>;
+  _rowHoverTemplateChild: DatatableRowHoverDirective;
 
   constructor(element: ElementRef, differs: KeyValueDiffers) {
     // get ref to elm for measuring

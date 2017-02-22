@@ -32,6 +32,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
               <li><a href="#" (click)="state='horz-vert-scrolling'">Horz/Vert Scrolling</a></li>
               <li><a href="#" (click)="state='multiple-tables'">Multiple Instances</a></li>
               <li><a href="#" (click)="state='row-details'">Row Detail</a></li>
+              <li><a href="#" (click)="state='row-hover'">Row Hover</a></li>
               <li><a href="#" (click)="state='filter'">Filtering</a></li>
               <li><a href="#" (click)="state='hidden'">Hidden On Load</a></li>
               <li><a href="#" (click)="state='live'">Live Data</a></li>
@@ -95,6 +96,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
         <horz-vert-scrolling-demo *ngIf="state === 'horz-vert-scrolling'"></horz-vert-scrolling-demo>
         <multiple-tables-demo *ngIf="state === 'multiple-tables'"></multiple-tables-demo>
         <row-details-demo *ngIf="state === 'row-details'"></row-details-demo>
+        <row-hover-demo *ngIf="state === 'row-hover'"></row-hover-demo>
         <filter-demo *ngIf="state === 'filter'"></filter-demo>
         <tabs-demo *ngIf="state === 'hidden'"></tabs-demo>
         <live-data-demo *ngIf="state === 'live'"></live-data-demo>

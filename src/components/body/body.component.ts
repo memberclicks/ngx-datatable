@@ -36,16 +36,18 @@ import { ScrollerComponent } from './scroller.component';
           [row]="row"
           [expanded]="row.$$expanded === 1"
           (rowContextmenu)="rowContextmenu.emit($event)">
-          <datatable-body-row
-            tabindex="-1"
-            [isSelected]="selector.getRowSelected(row)"
-            [innerWidth]="innerWidth"
-            [offsetX]="offsetX"
-            [columns]="columns"
-            [rowHeight]="rowHeight"
-            [row]="row"
-            (activate)="selector.onActivate($event, i)">
-          </datatable-body-row>
+            <datatable-row-hover [showOnHover]="showHoverRow" [rowHover]="rowHover">
+              <datatable-body-row
+                tabindex="-1"
+                [isSelected]="selector.getRowSelected(row)"
+                [innerWidth]="innerWidth"
+                [offsetX]="offsetX"
+                [columns]="columns"
+                [rowHeight]="rowHeight"
+                [row]="row"
+                (activate)="selector.onActivate($event, i)">
+              </datatable-body-row>
+          </datatable-row-hover>
         </datatable-row-wrapper>
       </datatable-scroller>
       <div
@@ -74,6 +76,7 @@ export class DataTableBodyComponent implements OnInit, OnDestroy {
   @Input() selectCheck: any;
   @Input() trackByProp: string;
   @Input() checkboxTemplate: any;
+  @Input() rowHover : any;
 
   @Input() set pageSize(val: number) {
     this._pageSize = val;
@@ -187,6 +190,11 @@ export class DataTableBodyComponent implements OnInit, OnDestroy {
   get detailRowHeight(): number {
     if(!this.rowDetail) return 0;
     return this.rowDetail.rowHeight;
+  }
+
+  get showHoverRow(): boolean {
+    if(!this.rowHover) return false;
+    return this.rowHover.showOnHover;
   }
 
   rowHeightsCache: RowHeightCache = new RowHeightCache();
