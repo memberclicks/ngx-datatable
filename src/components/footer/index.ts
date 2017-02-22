@@ -1,2 +1,2 @@
-export * from './footer.component';
-export * from './pager.component';
+export * from './memberclicksfooter.component';
+export * from './memberclickspager.component';

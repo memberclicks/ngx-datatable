@@ -143,6 +143,10 @@ line-height: 14px;
         position: relative;
       }
 
+      .datatable-header-cell-wrapper {
+        position: relative;
+      }
+
 			&.longpress {
         .draggable::after {
           transition: transform 400ms ease, opacity 400ms ease;

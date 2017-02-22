@@ -6,13 +6,10 @@ import {
   selector: 'datatable-pager',
   template: `
     <ul class="pager">
-      <li [class.disabled]="!canPrevious()">
-        <a
-          href="javascript:void(0)"
-          (click)="selectPage(1)">
-          <i class="{{pagerPreviousIcon}}"></i>
-        </a>
-      </li>
+   <li [class]="pages">Pages <select class="selection" [(ngModel)]="page" (change)="selectPage($event.target.value)"> // value is a string or number
+    <option *ngFor="let pg of pages" [value]="pg">{{pg.toString()}}</option>
+</select> of <span class="totpg">{{totalPages}}</span>
+      </li><li>of {{totalPages}}</li>
       <li [class.disabled]="!canPrevious()">
         <a
           href="javascript:void(0)"
@@ -20,28 +17,11 @@ import {
           <i class="{{pagerLeftArrowIcon}}"></i>
         </a>
       </li>
-      <li
-        class="pages"
-        *ngFor="let pg of pages"
-        [class.active]="pg.number === page">
-        <a
-          href="javascript:void(0)"
-          (click)="selectPage(pg.number)">
-          {{pg.text}}
-        </a>
-      </li>
       <li [class.disabled]="!canNext()">
         <a
           href="javascript:void(0)"
           (click)="nextPage()">
           <i class="{{pagerRightArrowIcon}}"></i>
-        </a>
-      </li>
-      <li [class.disabled]="!canNext()">
-        <a
-          href="javascript:void(0)"
-          (click)="selectPage(totalPages)">
-          <i class="{{pagerNextIcon}}"></i>
         </a>
       </li>
     </ul>
@@ -57,7 +37,7 @@ export class DataTablePagerComponent {
   @Input() pagerRightArrowIcon: string;
   @Input() pagerPreviousIcon: string;
   @Input() pagerNextIcon: string;
-
+  
   @Input()
   set size(val: number) {
     this._size = val;
@@ -92,8 +72,8 @@ export class DataTablePagerComponent {
     const count = this.size < 1 ? 1 : Math.ceil(this.count / this.size);
     return Math.max(count || 0, 1);
   }
-
-  @Output() change: EventEmitter<any> = new EventEmitter();
+//Change Output 'change' EventEmitter to btn
+  @Output() btnchange: EventEmitter<any> = new EventEmitter();
 
   _count: number = 0;
   _page: number = 1;
@@ -116,12 +96,11 @@ export class DataTablePagerComponent {
     this.selectPage(this.page + 1);
   }
 
-  selectPage(page: number): void {
-    
+  selectPage(page): void {
+    page = Number(page);
     if (page > 0 && page <= this.totalPages && page !== this.page) {
       this.page = page;
-
-      this.change.emit({
+      this.btnchange.emit({
         page
       });
     }
@@ -131,9 +110,8 @@ export class DataTablePagerComponent {
     let pages = [];
     let startPage = 1;
     let endPage = this.totalPages;
-    let maxSize = 5;
-    const isMaxSized = maxSize < this.totalPages;
-
+    let maxSize = this.totalPages;
+    const isMaxSized = maxSize <= this.totalPages;
     page = page || this.page;
     if (isMaxSized) {
       startPage = ((Math.ceil(page / maxSize) - 1) * maxSize) + 1;
@@ -141,10 +119,7 @@ export class DataTablePagerComponent {
     }
 
     for (let num = startPage; num <= endPage; num++) {
-      pages.push({
-        number: num,
-        text: <string><any>num
-      });
+      pages.push(num);
     }
 
     return pages;

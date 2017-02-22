@@ -14,6 +14,7 @@ import { DataTableBodyComponent } from './body';
 import { DataTableColumnDirective } from './columns';
 import { DatatableRowDetailDirective } from './row-detail';
 import { DatatableRowHoverDirective } from './row-hover';
+import { DatatablePagerSelectDirective } from './pager-select';
 
 @Component({
   selector: 'ngx-datatable',
@@ -70,7 +71,8 @@ import { DatatableRowHoverDirective } from './row-hover';
       <datatable-footer
         *ngIf="footerHeight"
         [rowCount]="rowCount"
-        [pageSize]="pageSize"
+        [pageSize]="limit"
+        [pageSizes]="pageSizes"
         [offset]="offset"
         [footerHeight]="footerHeight"
         [totalMessage]="messages.totalMessage"
@@ -78,6 +80,7 @@ import { DatatableRowHoverDirective } from './row-hover';
         [pagerRightArrowIcon]="cssClasses.pagerRightArrow"
         [pagerPreviousIcon]="cssClasses.pagerPrevious"
         [pagerNextIcon]="cssClasses.pagerNext"
+        [pagerSelect]="pagerSelect"
         (page)="onFooterPage($event)">
       </datatable-footer>
     </div>
@@ -231,6 +234,15 @@ export class DatatableComponent implements OnInit, AfterViewInit, DoCheck {
    * @memberOf DatatableComponent
    */
   @Input() limit: number = undefined;
+
+  /**
+   * The page sizes available on the pager. 
+   * Default value: `[ 5, 10, 25, 50, 100 ]`
+   * 
+   * @type {number}
+   * @memberOf DatatableComponent
+   */
+  @Input() pageSizes: number[] = [ 5, 10, 25, 50, 100 ];
 
   /**
    * The total count of all rows. 
@@ -609,8 +621,17 @@ export class DatatableComponent implements OnInit, AfterViewInit, DoCheck {
   @ContentChild(DatatableRowDetailDirective)
   rowDetail: DatatableRowDetailDirective;
 
+
   @ContentChild(DatatableRowHoverDirective)
   rowHover: DatatableRowHoverDirective;
+
+  /**
+   * Row Detail templates gathered from the ContentChild
+   * 
+   * @memberOf DatatableComponent
+   */
+  @ContentChild(DatatablePagerSelectDirective)
+  pagerSelect: DatatablePagerSelectDirective;
 
   /**
    * Reference to the body component for manually
@@ -650,6 +671,7 @@ export class DatatableComponent implements OnInit, AfterViewInit, DoCheck {
   _columns: any[];
   _columnTemplates: QueryList<DataTableColumnDirective>;
   _rowHoverTemplateChild: DatatableRowHoverDirective;
+  _pagerSelectTemplateChild: DatatablePagerSelectDirective;
 
   constructor(element: ElementRef, differs: KeyValueDiffers) {
     // get ref to elm for measuring
@@ -793,7 +815,6 @@ export class DatatableComponent implements OnInit, AfterViewInit, DoCheck {
    */
   onBodyPage({ offset }: any): void {
     this.offset = offset;
-
     this.page.emit({
       count: this.count,
       pageSize: this.pageSize,
@@ -822,9 +843,13 @@ export class DatatableComponent implements OnInit, AfterViewInit, DoCheck {
    * @memberOf DatatableComponent
    */
   onFooterPage(event: any) {
-    this.offset = event.page - 1;
+    //event is changed from a custom object to an Event object
+    this.offset = event.page-1;
+    if(event.pageSize !== undefined){
+      this.limit = event.pageSize;
+      this.recalculate();
+    }
     this.bodyComponent.updateOffsetY(this.offset);
-
     this.page.emit({
       count: this.count,
       pageSize: this.pageSize,
@@ -849,7 +874,6 @@ export class DatatableComponent implements OnInit, AfterViewInit, DoCheck {
       const size = Math.ceil(this.bodyHeight / this.rowHeight);
       return Math.max(size, 0);
     }
-
     // if limit is passed, we are paging
     if (this.limit !== undefined) return this.limit;
 

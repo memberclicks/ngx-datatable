@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import 'rxjs/add/observable/fromEvent';
 
 import {
@@ -24,7 +25,9 @@ import {
   DataTableColumnCheckboxHeaderDirective,
   DataTableColumnCheckboxCellDirective,
   DatatableRowHoverDirective,
-  DatatableRowHoverTemplateDirective
+  DatatableRowHoverTemplateDirective,
+  DatatablePagerSelectDirective,
+  DatatablePagerSelectTemplateDirective
 } from './components';
 
 import {
@@ -37,7 +40,8 @@ import {
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   declarations: [
     VisibilityDirective,
@@ -66,7 +70,9 @@ import {
     DataTableColumnCheckboxHeaderDirective,
     DataTableColumnCheckboxCellDirective,
     DatatableRowHoverDirective,
-    DatatableRowHoverTemplateDirective
+    DatatableRowHoverTemplateDirective,
+    DatatablePagerSelectDirective,
+    DatatablePagerSelectTemplateDirective
   ],
   exports: [
     DatatableComponent,
@@ -74,6 +80,8 @@ import {
     DatatableRowDetailTemplateDirective,
     DatatableRowHoverDirective,
     DatatableRowHoverTemplateDirective,
+    DatatablePagerSelectDirective,
+    DatatablePagerSelectTemplateDirective,
     DataTableColumnDirective,
     DataTableColumnHeaderDirective,
     DataTableColumnCellDirective,
