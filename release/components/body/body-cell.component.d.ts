@@ -26,4 +26,9 @@ export declare class DataTableBodyCellComponent {
     onKeyDown(event: KeyboardEvent): void;
     onCheckboxChange(event: any): void;
     calcSortDir(sorts: any[]): any;
+    getIsSelected(): boolean;
+    checkboxObject: {
+        isSelected: () => boolean;
+        onCheckboxChange: ($event: any) => void;
+    };
 }

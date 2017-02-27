@@ -5,4 +5,6 @@ function __export(m) {
 __export(require('./column.directive'));
 __export(require('./column-header.directive'));
 __export(require('./column-cell.directive'));
+__export(require('./column-checkbox-cell.directive'));
+__export(require('./column-checkbox-header.directive'));
 //# sourceMappingURL=index.js.map

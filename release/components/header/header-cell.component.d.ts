@@ -7,6 +7,7 @@ export declare class DataTableHeaderCellComponent {
     sortDescendingIcon: string;
     allRowsSelected: boolean;
     selectionType: SelectionType;
+    SelectionType: typeof SelectionType;
     headerHeight: number;
     sorts: any[];
     sort: EventEmitter<any>;
@@ -24,4 +25,10 @@ export declare class DataTableHeaderCellComponent {
     calcSortDir(sorts: any[]): any;
     onSort(): void;
     calcSortClass(sortDir: any): string;
+    checkboxObject: {
+        allRowsSelected: boolean;
+        emit: EventEmitter<any>;
+        parent: () => this;
+    };
+    constructor();
 }

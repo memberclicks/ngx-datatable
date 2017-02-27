@@ -8,4 +8,6 @@ __export(require('./body'));
 __export(require('./footer'));
 __export(require('./columns'));
 __export(require('./row-detail'));
+__export(require('./row-hover'));
+__export(require('./pager-select'));
 //# sourceMappingURL=index.js.map

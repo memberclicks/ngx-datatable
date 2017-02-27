@@ -21,22 +21,24 @@ import * as import12 from '@angular/core/src/linker/view_container';
 import * as import13 from '../../../../src/components/body/body-row-wrapper.component';
 import * as import14 from '../../../node_modules/@angular/common/src/directives/ng_style.ngfactory';
 import * as import15 from './body-row-wrapper.component.ngfactory';
-import * as import16 from '../../../../src/components/body/body-row.component';
-import * as import17 from './body-row.component.ngfactory';
-import * as import18 from '@angular/core/src/change_detection/differs/keyvalue_differs';
-import * as import19 from '@angular/core/src/linker/element_ref';
-import * as import20 from '@angular/common/src/directives/ng_style';
-import * as import21 from '../../../../src/components/body/scroller.component';
-import * as import22 from './scroller.component.ngfactory';
-import * as import23 from '../../../node_modules/@angular/common/src/directives/ng_for.ngfactory';
-import * as import24 from '@angular/core/src/linker/template_ref';
-import * as import25 from '@angular/core/src/change_detection/differs/iterable_differs';
-import * as import26 from '@angular/common/src/directives/ng_for';
-import * as import27 from '@angular/core/src/linker/query_list';
-import * as import28 from '../../../../src/components/body/selection.component';
-import * as import29 from './selection.component.ngfactory';
-import * as import30 from '../../../node_modules/@angular/common/src/directives/ng_if.ngfactory';
-import * as import31 from '@angular/common/src/directives/ng_if';
+import * as import16 from '../../../../src/components/body/body-row-hover.component';
+import * as import17 from './body-row-hover.component.ngfactory';
+import * as import18 from '../../../../src/components/body/body-row.component';
+import * as import19 from './body-row.component.ngfactory';
+import * as import20 from '@angular/core/src/change_detection/differs/keyvalue_differs';
+import * as import21 from '@angular/core/src/linker/element_ref';
+import * as import22 from '@angular/common/src/directives/ng_style';
+import * as import23 from '../../../../src/components/body/scroller.component';
+import * as import24 from './scroller.component.ngfactory';
+import * as import25 from '../../../node_modules/@angular/common/src/directives/ng_for.ngfactory';
+import * as import26 from '@angular/core/src/linker/template_ref';
+import * as import27 from '@angular/core/src/change_detection/differs/iterable_differs';
+import * as import28 from '@angular/common/src/directives/ng_for';
+import * as import29 from '@angular/core/src/linker/query_list';
+import * as import30 from '../../../../src/components/body/selection.component';
+import * as import31 from './selection.component.ngfactory';
+import * as import32 from '../../../node_modules/@angular/common/src/directives/ng_if.ngfactory';
+import * as import33 from '@angular/common/src/directives/ng_if';
 export class Wrapper_DataTableBodyComponent {
   /*private*/ _eventHandler:Function;
   context:import0.DataTableBodyComponent;
@@ -62,6 +64,8 @@ export class Wrapper_DataTableBodyComponent {
   /*private*/ _expr_18:any;
   /*private*/ _expr_19:any;
   /*private*/ _expr_20:any;
+  /*private*/ _expr_21:any;
+  /*private*/ _expr_22:any;
   subscription0:any;
   subscription1:any;
   subscription2:any;
@@ -92,6 +96,8 @@ export class Wrapper_DataTableBodyComponent {
     this._expr_18 = import1.UNINITIALIZED;
     this._expr_19 = import1.UNINITIALIZED;
     this._expr_20 = import1.UNINITIALIZED;
+    this._expr_21 = import1.UNINITIALIZED;
+    this._expr_22 = import1.UNINITIALIZED;
   }
   ngOnDetach(view:import2.AppView<any>,componentView:import2.AppView<any>,el:any):void {
   }
@@ -188,53 +194,67 @@ export class Wrapper_DataTableBodyComponent {
       this._expr_11 = currValue;
     }
   }
-  check_pageSize(currValue:any,throwOnChange:boolean,forceUpdate:boolean):void {
+  check_checkboxTemplate(currValue:any,throwOnChange:boolean,forceUpdate:boolean):void {
     if ((forceUpdate || import3.checkBinding(throwOnChange,this._expr_12,currValue))) {
       this._changed = true;
-      this.context.pageSize = currValue;
+      this.context.checkboxTemplate = currValue;
       this._expr_12 = currValue;
     }
   }
-  check_rows(currValue:any,throwOnChange:boolean,forceUpdate:boolean):void {
+  check_rowHover(currValue:any,throwOnChange:boolean,forceUpdate:boolean):void {
     if ((forceUpdate || import3.checkBinding(throwOnChange,this._expr_13,currValue))) {
       this._changed = true;
-      this.context.rows = currValue;
+      this.context.rowHover = currValue;
       this._expr_13 = currValue;
     }
   }
-  check_columns(currValue:any,throwOnChange:boolean,forceUpdate:boolean):void {
+  check_pageSize(currValue:any,throwOnChange:boolean,forceUpdate:boolean):void {
     if ((forceUpdate || import3.checkBinding(throwOnChange,this._expr_14,currValue))) {
       this._changed = true;
-      this.context.columns = currValue;
+      this.context.pageSize = currValue;
       this._expr_14 = currValue;
     }
   }
-  check_offset(currValue:any,throwOnChange:boolean,forceUpdate:boolean):void {
+  check_rows(currValue:any,throwOnChange:boolean,forceUpdate:boolean):void {
     if ((forceUpdate || import3.checkBinding(throwOnChange,this._expr_15,currValue))) {
       this._changed = true;
-      this.context.offset = currValue;
+      this.context.rows = currValue;
       this._expr_15 = currValue;
     }
   }
-  check_rowCount(currValue:any,throwOnChange:boolean,forceUpdate:boolean):void {
+  check_columns(currValue:any,throwOnChange:boolean,forceUpdate:boolean):void {
     if ((forceUpdate || import3.checkBinding(throwOnChange,this._expr_16,currValue))) {
       this._changed = true;
-      this.context.rowCount = currValue;
+      this.context.columns = currValue;
       this._expr_16 = currValue;
     }
   }
-  check_innerWidth(currValue:any,throwOnChange:boolean,forceUpdate:boolean):void {
+  check_offset(currValue:any,throwOnChange:boolean,forceUpdate:boolean):void {
     if ((forceUpdate || import3.checkBinding(throwOnChange,this._expr_17,currValue))) {
       this._changed = true;
-      this.context.innerWidth = currValue;
+      this.context.offset = currValue;
       this._expr_17 = currValue;
     }
   }
-  check_bodyHeight(currValue:any,throwOnChange:boolean,forceUpdate:boolean):void {
+  check_rowCount(currValue:any,throwOnChange:boolean,forceUpdate:boolean):void {
     if ((forceUpdate || import3.checkBinding(throwOnChange,this._expr_18,currValue))) {
       this._changed = true;
-      this.context.bodyHeight = currValue;
+      this.context.rowCount = currValue;
       this._expr_18 = currValue;
+    }
+  }
+  check_innerWidth(currValue:any,throwOnChange:boolean,forceUpdate:boolean):void {
+    if ((forceUpdate || import3.checkBinding(throwOnChange,this._expr_19,currValue))) {
+      this._changed = true;
+      this.context.innerWidth = currValue;
+      this._expr_19 = currValue;
+    }
+  }
+  check_bodyHeight(currValue:any,throwOnChange:boolean,forceUpdate:boolean):void {
+    if ((forceUpdate || import3.checkBinding(throwOnChange,this._expr_20,currValue))) {
+      this._changed = true;
+      this.context.bodyHeight = currValue;
+      this._expr_20 = currValue;
     }
   }
   ngDoCheck(view:import2.AppView<any>,el:any,throwOnChange:boolean):boolean {
@@ -244,15 +264,15 @@ export class Wrapper_DataTableBodyComponent {
     return changed;
   }
   checkHost(view:import2.AppView<any>,componentView:import2.AppView<any>,el:any,throwOnChange:boolean):void {
-    const currVal_19:any = this.context.bodyWidth;
-    if (import3.checkBinding(throwOnChange,this._expr_19,currVal_19)) {
-      view.renderer.setElementStyle(el,'width',((view.viewUtils.sanitizer.sanitize(import4.SecurityContext.STYLE,currVal_19) == null)? (null as any): view.viewUtils.sanitizer.sanitize(import4.SecurityContext.STYLE,currVal_19).toString()));
-      this._expr_19 = currVal_19;
+    const currVal_21:any = this.context.bodyWidth;
+    if (import3.checkBinding(throwOnChange,this._expr_21,currVal_21)) {
+      view.renderer.setElementStyle(el,'width',((view.viewUtils.sanitizer.sanitize(import4.SecurityContext.STYLE,currVal_21) == null)? (null as any): view.viewUtils.sanitizer.sanitize(import4.SecurityContext.STYLE,currVal_21).toString()));
+      this._expr_21 = currVal_21;
     }
-    const currVal_20:any = this.context.bodyHeight;
-    if (import3.checkBinding(throwOnChange,this._expr_20,currVal_20)) {
-      view.renderer.setElementStyle(el,'height',((view.viewUtils.sanitizer.sanitize(import4.SecurityContext.STYLE,currVal_20) == null)? (null as any): view.viewUtils.sanitizer.sanitize(import4.SecurityContext.STYLE,currVal_20).toString()));
-      this._expr_20 = currVal_20;
+    const currVal_22:any = this.context.bodyHeight;
+    if (import3.checkBinding(throwOnChange,this._expr_22,currVal_22)) {
+      view.renderer.setElementStyle(el,'height',((view.viewUtils.sanitizer.sanitize(import4.SecurityContext.STYLE,currVal_22) == null)? (null as any): view.viewUtils.sanitizer.sanitize(import4.SecurityContext.STYLE,currVal_22).toString()));
+      this._expr_22 = currVal_22;
     }
   }
   handleEvent(eventName:string,$event:any):boolean {
@@ -347,36 +367,50 @@ class View_DataTableBodyComponent3 extends import2.AppView<any> {
   _DataTableRowWrapperComponent_0_4:import15.Wrapper_DataTableRowWrapperComponent;
   _text_1:any;
   _el_2:any;
-  compView_2:import2.AppView<import16.DataTableBodyRowComponent>;
-  _DataTableBodyRowComponent_2_3:import17.Wrapper_DataTableBodyRowComponent;
+  compView_2:import2.AppView<import16.DataTableRowHoverComponent>;
+  _DataTableRowHoverComponent_2_3:import17.Wrapper_DataTableRowHoverComponent;
   _text_3:any;
-  _text_4:any;
+  _el_4:any;
+  compView_4:import2.AppView<import18.DataTableBodyRowComponent>;
+  _DataTableBodyRowComponent_4_3:import19.Wrapper_DataTableBodyRowComponent;
+  _text_5:any;
+  _text_6:any;
+  _text_7:any;
   constructor(viewUtils:import3.ViewUtils,parentView:import2.AppView<any>,parentIndex:number,parentElement:any,declaredViewContainer:import12.ViewContainer) {
     super(View_DataTableBodyComponent3,renderType_DataTableBodyComponent,import7.ViewType.EMBEDDED,viewUtils,parentView,parentIndex,parentElement,import8.ChangeDetectorStatus.CheckAlways,declaredViewContainer);
   }
   createInternal(rootSelector:string):import9.ComponentRef<any> {
     this._el_0 = import3.createRenderElement(this.renderer,(null as any),'datatable-row-wrapper',new import3.InlineArray2(2,'class','datatable-row-wrapper'),(null as any));
     this.compView_0 = new import15.View_DataTableRowWrapperComponent0(this.viewUtils,this,0,this._el_0);
-    this._NgStyle_0_3 = new import14.Wrapper_NgStyle(this.parentView.parentView.parentView.injectorGet(import18.KeyValueDiffers,this.parentView.parentView.parentIndex),new import19.ElementRef(this._el_0),this.renderer);
+    this._NgStyle_0_3 = new import14.Wrapper_NgStyle(this.parentView.parentView.parentView.injectorGet(import20.KeyValueDiffers,this.parentView.parentView.parentIndex),new import21.ElementRef(this._el_0),this.renderer);
     this._DataTableRowWrapperComponent_0_4 = new import15.Wrapper_DataTableRowWrapperComponent();
-    this._text_1 = this.renderer.createText((null as any),'\n          ',(null as any));
-    this._el_2 = import3.createRenderElement(this.renderer,(null as any),'datatable-body-row',new import3.InlineArray4(4,'class','datatable-body-row','tabindex','-1'),(null as any));
-    this.compView_2 = new import17.View_DataTableBodyRowComponent0(this.viewUtils,this,2,this._el_2);
-    this._DataTableBodyRowComponent_2_3 = new import17.Wrapper_DataTableBodyRowComponent(new import19.ElementRef(this._el_2));
-    this._text_3 = this.renderer.createText((null as any),'\n          ',(null as any));
-    this.compView_2.create(this._DataTableBodyRowComponent_2_3.context);
-    this._text_4 = this.renderer.createText((null as any),'\n        ',(null as any));
+    this._text_1 = this.renderer.createText((null as any),'\n            ',(null as any));
+    this._el_2 = import3.createRenderElement(this.renderer,(null as any),'datatable-row-hover',new import3.InlineArray2(2,'class','datatable-body-row-hover'),(null as any));
+    this.compView_2 = new import17.View_DataTableRowHoverComponent0(this.viewUtils,this,2,this._el_2);
+    this._DataTableRowHoverComponent_2_3 = new import17.Wrapper_DataTableRowHoverComponent();
+    this._text_3 = this.renderer.createText((null as any),'\n              ',(null as any));
+    this._el_4 = import3.createRenderElement(this.renderer,(null as any),'datatable-body-row',new import3.InlineArray4(4,'class','datatable-body-row','tabindex','-1'),(null as any));
+    this.compView_4 = new import19.View_DataTableBodyRowComponent0(this.viewUtils,this,4,this._el_4);
+    this._DataTableBodyRowComponent_4_3 = new import19.Wrapper_DataTableBodyRowComponent(new import21.ElementRef(this._el_4));
+    this._text_5 = this.renderer.createText((null as any),'\n              ',(null as any));
+    this.compView_4.create(this._DataTableBodyRowComponent_4_3.context);
+    this._text_6 = this.renderer.createText((null as any),'\n          ',(null as any));
+    this.compView_2.create(this._DataTableRowHoverComponent_2_3.context);
+    this._text_7 = this.renderer.createText((null as any),'\n        ',(null as any));
     this.compView_0.create(this._DataTableRowWrapperComponent_0_4.context);
     var disposable_0:Function = import3.subscribeToRenderElement(this,this._el_0,new import3.InlineArray4(4,'rowContextmenu',(null as any),'contextmenu',(null as any)),this.eventHandler(this.handleEvent_0));
     this._DataTableRowWrapperComponent_0_4.subscribe(this,this.eventHandler(this.handleEvent_0),true);
-    var disposable_1:Function = import3.subscribeToRenderElement(this,this._el_2,new import3.InlineArray4(4,'activate',(null as any),'keydown',(null as any)),this.eventHandler(this.handleEvent_2));
-    this._DataTableBodyRowComponent_2_3.subscribe(this,this.eventHandler(this.handleEvent_2),true);
+    var disposable_1:Function = import3.subscribeToRenderElement(this,this._el_4,new import3.InlineArray4(4,'activate',(null as any),'keydown',(null as any)),this.eventHandler(this.handleEvent_4));
+    this._DataTableBodyRowComponent_4_3.subscribe(this,this.eventHandler(this.handleEvent_4),true);
     this.init(this._el_0,((<any>this.renderer).directRenderer? (null as any): [
       this._el_0,
       this._text_1,
       this._el_2,
       this._text_3,
-      this._text_4
+      this._el_4,
+      this._text_5,
+      this._text_6,
+      this._text_7
     ]
     ),[
       disposable_0,
@@ -386,9 +420,10 @@ class View_DataTableBodyComponent3 extends import2.AppView<any> {
     return (null as any);
   }
   injectorGetInternal(token:any,requestNodeIndex:number,notFoundResult:any):any {
-    if (((token === import16.DataTableBodyRowComponent) && ((2 <= requestNodeIndex) && (requestNodeIndex <= 3)))) { return this._DataTableBodyRowComponent_2_3.context; }
-    if (((token === import20.NgStyle) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 4)))) { return this._NgStyle_0_3.context; }
-    if (((token === import13.DataTableRowWrapperComponent) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 4)))) { return this._DataTableRowWrapperComponent_0_4.context; }
+    if (((token === import18.DataTableBodyRowComponent) && ((4 <= requestNodeIndex) && (requestNodeIndex <= 5)))) { return this._DataTableBodyRowComponent_4_3.context; }
+    if (((token === import16.DataTableRowHoverComponent) && ((2 <= requestNodeIndex) && (requestNodeIndex <= 6)))) { return this._DataTableRowHoverComponent_2_3.context; }
+    if (((token === import22.NgStyle) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 7)))) { return this._NgStyle_0_3.context; }
+    if (((token === import13.DataTableRowWrapperComponent) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 7)))) { return this._DataTableRowWrapperComponent_0_4.context; }
     return notFoundResult;
   }
   detectChangesInternal(throwOnChange:boolean):void {
@@ -404,27 +439,34 @@ class View_DataTableBodyComponent3 extends import2.AppView<any> {
     const currVal_0_1_3:any = this.context.$implicit;
     this._DataTableRowWrapperComponent_0_4.check_row(currVal_0_1_3,throwOnChange,false);
     this._DataTableRowWrapperComponent_0_4.ngDoCheck(this,this._el_0,throwOnChange);
-    const currVal_2_0_0:any = this.parentView.parentView.context.columns;
-    this._DataTableBodyRowComponent_2_3.check_columns(currVal_2_0_0,throwOnChange,false);
-    const currVal_2_0_1:any = this.parentView.parentView.context.innerWidth;
-    this._DataTableBodyRowComponent_2_3.check_innerWidth(currVal_2_0_1,throwOnChange,false);
-    const currVal_2_0_2:any = this.context.$implicit;
-    this._DataTableBodyRowComponent_2_3.check_row(currVal_2_0_2,throwOnChange,false);
-    const currVal_2_0_3:any = this.parentView.parentView.context.offsetX;
-    this._DataTableBodyRowComponent_2_3.check_offsetX(currVal_2_0_3,throwOnChange,false);
-    const currVal_2_0_4:any = this.parentView.parentView.context.rowHeight;
-    this._DataTableBodyRowComponent_2_3.check_rowHeight(currVal_2_0_4,throwOnChange,false);
-    const currVal_2_0_5:any = (<View_DataTableBodyComponent0>this.parentView.parentView)._DataTableSelectionComponent_1_3.context.getRowSelected(this.context.$implicit);
-    this._DataTableBodyRowComponent_2_3.check_isSelected(currVal_2_0_5,throwOnChange,false);
-    this._DataTableBodyRowComponent_2_3.ngDoCheck(this,this._el_2,throwOnChange);
-    this._DataTableBodyRowComponent_2_3.checkHost(this,this.compView_2,this._el_2,throwOnChange);
+    const currVal_2_0_0:any = this.parentView.parentView.context.rowHover;
+    this._DataTableRowHoverComponent_2_3.check_rowHover(currVal_2_0_0,throwOnChange,false);
+    const currVal_2_0_1:any = this.parentView.parentView.context.showHoverRow;
+    this._DataTableRowHoverComponent_2_3.check_showOnHover(currVal_2_0_1,throwOnChange,false);
+    this._DataTableRowHoverComponent_2_3.ngDoCheck(this,this._el_2,throwOnChange);
+    const currVal_4_0_0:any = this.parentView.parentView.context.columns;
+    this._DataTableBodyRowComponent_4_3.check_columns(currVal_4_0_0,throwOnChange,false);
+    const currVal_4_0_1:any = this.parentView.parentView.context.innerWidth;
+    this._DataTableBodyRowComponent_4_3.check_innerWidth(currVal_4_0_1,throwOnChange,false);
+    const currVal_4_0_2:any = this.context.$implicit;
+    this._DataTableBodyRowComponent_4_3.check_row(currVal_4_0_2,throwOnChange,false);
+    const currVal_4_0_3:any = this.parentView.parentView.context.offsetX;
+    this._DataTableBodyRowComponent_4_3.check_offsetX(currVal_4_0_3,throwOnChange,false);
+    const currVal_4_0_4:any = this.parentView.parentView.context.rowHeight;
+    this._DataTableBodyRowComponent_4_3.check_rowHeight(currVal_4_0_4,throwOnChange,false);
+    const currVal_4_0_5:any = (<View_DataTableBodyComponent0>this.parentView.parentView)._DataTableSelectionComponent_1_3.context.getRowSelected(this.context.$implicit);
+    this._DataTableBodyRowComponent_4_3.check_isSelected(currVal_4_0_5,throwOnChange,false);
+    this._DataTableBodyRowComponent_4_3.ngDoCheck(this,this._el_4,throwOnChange);
+    this._DataTableBodyRowComponent_4_3.checkHost(this,this.compView_4,this._el_4,throwOnChange);
     this.compView_0.internalDetectChanges(throwOnChange);
     this.compView_2.internalDetectChanges(throwOnChange);
+    this.compView_4.internalDetectChanges(throwOnChange);
   }
   destroyInternal():void {
     this.compView_0.destroy();
     this.compView_2.destroy();
-    this._DataTableBodyRowComponent_2_3.ngOnDestroy();
+    this.compView_4.destroy();
+    this._DataTableBodyRowComponent_4_3.ngOnDestroy();
     this._DataTableRowWrapperComponent_0_4.ngOnDestroy();
   }
   visitRootNodesInternal(cb:any,ctx:any):void {
@@ -434,7 +476,12 @@ class View_DataTableBodyComponent3 extends import2.AppView<any> {
     if (((nodeIndex == 0) && (ngContentIndex == 0))) {
       cb(this._text_1,ctx);
       cb(this._el_2,ctx);
-      cb(this._text_4,ctx);
+      cb(this._text_7,ctx);
+    }
+    if (((nodeIndex == 2) && (ngContentIndex == 0))) {
+      cb(this._text_3,ctx);
+      cb(this._el_4,ctx);
+      cb(this._text_6,ctx);
     }
   }
   handleEvent_0(eventName:string,$event:any):boolean {
@@ -447,10 +494,10 @@ class View_DataTableBodyComponent3 extends import2.AppView<any> {
     }
     return result;
   }
-  handleEvent_2(eventName:string,$event:any):boolean {
-    this.compView_2.markPathToRootAsCheckOnce();
+  handleEvent_4(eventName:string,$event:any):boolean {
+    this.compView_4.markPathToRootAsCheckOnce();
     var result:boolean = true;
-    result = (this._DataTableBodyRowComponent_2_3.handleEvent(eventName,$event) && result);
+    result = (this._DataTableBodyRowComponent_4_3.handleEvent(eventName,$event) && result);
     if ((eventName == 'activate')) {
       const pd_sub_0:any = ((<any>(<View_DataTableBodyComponent0>this.parentView.parentView)._DataTableSelectionComponent_1_3.context.onActivate($event,this.context.index)) !== false);
       result = (pd_sub_0 && result);
@@ -460,26 +507,26 @@ class View_DataTableBodyComponent3 extends import2.AppView<any> {
 }
 class View_DataTableBodyComponent2 extends import2.AppView<any> {
   _el_0:any;
-  compView_0:import2.AppView<import21.ScrollerComponent>;
-  _ScrollerComponent_0_3:import22.Wrapper_ScrollerComponent;
+  compView_0:import2.AppView<import23.ScrollerComponent>;
+  _ScrollerComponent_0_3:import24.Wrapper_ScrollerComponent;
   _text_1:any;
   _anchor_2:any;
   /*private*/ _vc_2:import12.ViewContainer;
   _TemplateRef_2_5:any;
-  _NgFor_2_6:import23.Wrapper_NgFor;
+  _NgFor_2_6:import25.Wrapper_NgFor;
   _text_3:any;
   constructor(viewUtils:import3.ViewUtils,parentView:import2.AppView<any>,parentIndex:number,parentElement:any,declaredViewContainer:import12.ViewContainer) {
     super(View_DataTableBodyComponent2,renderType_DataTableBodyComponent,import7.ViewType.EMBEDDED,viewUtils,parentView,parentIndex,parentElement,import8.ChangeDetectorStatus.CheckAlways,declaredViewContainer);
   }
   createInternal(rootSelector:string):import9.ComponentRef<any> {
     this._el_0 = import3.createRenderElement(this.renderer,(null as any),'datatable-scroller',new import3.InlineArray2(2,'class','datatable-scroll'),(null as any));
-    this.compView_0 = new import22.View_ScrollerComponent0(this.viewUtils,this,0,this._el_0);
-    this._ScrollerComponent_0_3 = new import22.Wrapper_ScrollerComponent(new import19.ElementRef(this._el_0),this.renderer);
+    this.compView_0 = new import24.View_ScrollerComponent0(this.viewUtils,this,0,this._el_0);
+    this._ScrollerComponent_0_3 = new import24.Wrapper_ScrollerComponent(new import21.ElementRef(this._el_0),this.renderer);
     this._text_1 = this.renderer.createText((null as any),'\n        ',(null as any));
     this._anchor_2 = this.renderer.createTemplateAnchor((null as any),(null as any));
     this._vc_2 = new import12.ViewContainer(2,0,this,this._anchor_2);
-    this._TemplateRef_2_5 = new import24.TemplateRef_(this,2,this._anchor_2);
-    this._NgFor_2_6 = new import23.Wrapper_NgFor(this._vc_2.vcRef,this._TemplateRef_2_5,this.parentView.parentView.injectorGet(import25.IterableDiffers,this.parentView.parentIndex),this.parentView.ref);
+    this._TemplateRef_2_5 = new import26.TemplateRef_(this,2,this._anchor_2);
+    this._NgFor_2_6 = new import25.Wrapper_NgFor(this._vc_2.vcRef,this._TemplateRef_2_5,this.parentView.parentView.injectorGet(import27.IterableDiffers,this.parentView.parentIndex),this.parentView.ref);
     this._text_3 = this.renderer.createText((null as any),'\n      ',(null as any));
     this.compView_0.create(this._ScrollerComponent_0_3.context);
     var disposable_0:Function = import3.subscribeToRenderElement(this,this._el_0,new import3.InlineArray2(2,'scroll',(null as any)),this.eventHandler(this.handleEvent_0));
@@ -494,9 +541,9 @@ class View_DataTableBodyComponent2 extends import2.AppView<any> {
     return (null as any);
   }
   injectorGetInternal(token:any,requestNodeIndex:number,notFoundResult:any):any {
-    if (((token === import24.TemplateRef) && (2 === requestNodeIndex))) { return this._TemplateRef_2_5; }
-    if (((token === import26.NgFor) && (2 === requestNodeIndex))) { return this._NgFor_2_6.context; }
-    if (((token === import21.ScrollerComponent) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 3)))) { return this._ScrollerComponent_0_3.context; }
+    if (((token === import26.TemplateRef) && (2 === requestNodeIndex))) { return this._TemplateRef_2_5; }
+    if (((token === import28.NgFor) && (2 === requestNodeIndex))) { return this._NgFor_2_6.context; }
+    if (((token === import23.ScrollerComponent) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 3)))) { return this._ScrollerComponent_0_3.context; }
     return notFoundResult;
   }
   detectChangesInternal(throwOnChange:boolean):void {
@@ -582,26 +629,26 @@ class View_DataTableBodyComponent4 extends import2.AppView<any> {
 }
 var renderType_DataTableBodyComponent:import5.RenderComponentType = import3.createRenderComponentType('',0,import6.ViewEncapsulation.None,styles_DataTableBodyComponent,{});
 export class View_DataTableBodyComponent0 extends import2.AppView<import0.DataTableBodyComponent> {
-  _viewQuery_ScrollerComponent_0:import27.QueryList<any>;
+  _viewQuery_ScrollerComponent_0:import29.QueryList<any>;
   _text_0:any;
   _el_1:any;
-  compView_1:import2.AppView<import28.DataTableSelectionComponent>;
-  _DataTableSelectionComponent_1_3:import29.Wrapper_DataTableSelectionComponent;
+  compView_1:import2.AppView<import30.DataTableSelectionComponent>;
+  _DataTableSelectionComponent_1_3:import31.Wrapper_DataTableSelectionComponent;
   _text_2:any;
   _anchor_3:any;
   /*private*/ _vc_3:import12.ViewContainer;
   _TemplateRef_3_5:any;
-  _NgIf_3_6:import30.Wrapper_NgIf;
+  _NgIf_3_6:import32.Wrapper_NgIf;
   _text_4:any;
   _anchor_5:any;
   /*private*/ _vc_5:import12.ViewContainer;
   _TemplateRef_5_5:any;
-  _NgIf_5_6:import30.Wrapper_NgIf;
+  _NgIf_5_6:import32.Wrapper_NgIf;
   _text_6:any;
   _anchor_7:any;
   /*private*/ _vc_7:import12.ViewContainer;
   _TemplateRef_7_5:any;
-  _NgIf_7_6:import30.Wrapper_NgIf;
+  _NgIf_7_6:import32.Wrapper_NgIf;
   _text_8:any;
   _text_9:any;
   constructor(viewUtils:import3.ViewUtils,parentView:import2.AppView<any>,parentIndex:number,parentElement:any) {
@@ -609,26 +656,26 @@ export class View_DataTableBodyComponent0 extends import2.AppView<import0.DataTa
   }
   createInternal(rootSelector:string):import9.ComponentRef<any> {
     const parentRenderNode:any = this.renderer.createViewRoot(this.parentElement);
-    this._viewQuery_ScrollerComponent_0 = new import27.QueryList<any>();
+    this._viewQuery_ScrollerComponent_0 = new import29.QueryList<any>();
     this._text_0 = this.renderer.createText(parentRenderNode,'\n    ',(null as any));
     this._el_1 = import3.createRenderElement(this.renderer,parentRenderNode,'datatable-selection',import3.EMPTY_INLINE_ARRAY,(null as any));
-    this.compView_1 = new import29.View_DataTableSelectionComponent0(this.viewUtils,this,1,this._el_1);
-    this._DataTableSelectionComponent_1_3 = new import29.Wrapper_DataTableSelectionComponent();
+    this.compView_1 = new import31.View_DataTableSelectionComponent0(this.viewUtils,this,1,this._el_1);
+    this._DataTableSelectionComponent_1_3 = new import31.Wrapper_DataTableSelectionComponent();
     this._text_2 = this.renderer.createText((null as any),'\n      ',(null as any));
     this._anchor_3 = this.renderer.createTemplateAnchor((null as any),(null as any));
     this._vc_3 = new import12.ViewContainer(3,1,this,this._anchor_3);
-    this._TemplateRef_3_5 = new import24.TemplateRef_(this,3,this._anchor_3);
-    this._NgIf_3_6 = new import30.Wrapper_NgIf(this._vc_3.vcRef,this._TemplateRef_3_5);
+    this._TemplateRef_3_5 = new import26.TemplateRef_(this,3,this._anchor_3);
+    this._NgIf_3_6 = new import32.Wrapper_NgIf(this._vc_3.vcRef,this._TemplateRef_3_5);
     this._text_4 = this.renderer.createText((null as any),'\n      ',(null as any));
     this._anchor_5 = this.renderer.createTemplateAnchor((null as any),(null as any));
     this._vc_5 = new import12.ViewContainer(5,1,this,this._anchor_5);
-    this._TemplateRef_5_5 = new import24.TemplateRef_(this,5,this._anchor_5);
-    this._NgIf_5_6 = new import30.Wrapper_NgIf(this._vc_5.vcRef,this._TemplateRef_5_5);
+    this._TemplateRef_5_5 = new import26.TemplateRef_(this,5,this._anchor_5);
+    this._NgIf_5_6 = new import32.Wrapper_NgIf(this._vc_5.vcRef,this._TemplateRef_5_5);
     this._text_6 = this.renderer.createText((null as any),'\n      ',(null as any));
     this._anchor_7 = this.renderer.createTemplateAnchor((null as any),(null as any));
     this._vc_7 = new import12.ViewContainer(7,1,this,this._anchor_7);
-    this._TemplateRef_7_5 = new import24.TemplateRef_(this,7,this._anchor_7);
-    this._NgIf_7_6 = new import30.Wrapper_NgIf(this._vc_7.vcRef,this._TemplateRef_7_5);
+    this._TemplateRef_7_5 = new import26.TemplateRef_(this,7,this._anchor_7);
+    this._NgIf_7_6 = new import32.Wrapper_NgIf(this._vc_7.vcRef,this._TemplateRef_7_5);
     this._text_8 = this.renderer.createText((null as any),'\n    ',(null as any));
     this.compView_1.create(this._DataTableSelectionComponent_1_3.context);
     this._text_9 = this.renderer.createText(parentRenderNode,'\n  ',(null as any));
@@ -650,13 +697,13 @@ export class View_DataTableBodyComponent0 extends import2.AppView<import0.DataTa
     return (null as any);
   }
   injectorGetInternal(token:any,requestNodeIndex:number,notFoundResult:any):any {
-    if (((token === import24.TemplateRef) && (3 === requestNodeIndex))) { return this._TemplateRef_3_5; }
-    if (((token === import31.NgIf) && (3 === requestNodeIndex))) { return this._NgIf_3_6.context; }
-    if (((token === import24.TemplateRef) && (5 === requestNodeIndex))) { return this._TemplateRef_5_5; }
-    if (((token === import31.NgIf) && (5 === requestNodeIndex))) { return this._NgIf_5_6.context; }
-    if (((token === import24.TemplateRef) && (7 === requestNodeIndex))) { return this._TemplateRef_7_5; }
-    if (((token === import31.NgIf) && (7 === requestNodeIndex))) { return this._NgIf_7_6.context; }
-    if (((token === import28.DataTableSelectionComponent) && ((1 <= requestNodeIndex) && (requestNodeIndex <= 8)))) { return this._DataTableSelectionComponent_1_3.context; }
+    if (((token === import26.TemplateRef) && (3 === requestNodeIndex))) { return this._TemplateRef_3_5; }
+    if (((token === import33.NgIf) && (3 === requestNodeIndex))) { return this._NgIf_3_6.context; }
+    if (((token === import26.TemplateRef) && (5 === requestNodeIndex))) { return this._TemplateRef_5_5; }
+    if (((token === import33.NgIf) && (5 === requestNodeIndex))) { return this._NgIf_5_6.context; }
+    if (((token === import26.TemplateRef) && (7 === requestNodeIndex))) { return this._TemplateRef_7_5; }
+    if (((token === import33.NgIf) && (7 === requestNodeIndex))) { return this._NgIf_7_6.context; }
+    if (((token === import30.DataTableSelectionComponent) && ((1 <= requestNodeIndex) && (requestNodeIndex <= 8)))) { return this._DataTableSelectionComponent_1_3.context; }
     return notFoundResult;
   }
   detectChangesInternal(throwOnChange:boolean):void {

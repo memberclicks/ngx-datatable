@@ -111,6 +111,8 @@ export class DataTableBodyCellComponent {
 
   constructor(element: ElementRef) {
     this.element = element.nativeElement;
+    this.checkboxObject.isSelected.bind(this);
+    this.checkboxObject.onCheckboxChange.bind(this);
   }
 
   @HostListener('focus')
@@ -199,6 +201,7 @@ export class DataTableBodyCellComponent {
     return this.isSelected;
   }
   checkboxObject = {
-    parent : this
+    isSelected : () => this.isSelected,
+    onCheckboxChange : ($event) => this.onCheckboxChange($event)
   };
 }

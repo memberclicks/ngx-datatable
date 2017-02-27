@@ -15,6 +15,8 @@ export declare class DataTableBodyComponent implements OnInit, OnDestroy {
     rowDetail: any;
     selectCheck: any;
     trackByProp: string;
+    checkboxTemplate: any;
+    rowHover: any;
     pageSize: number;
     rows: any[];
     columns: any[];
@@ -52,6 +54,7 @@ export declare class DataTableBodyComponent implements OnInit, OnDestroy {
      */
     readonly scrollHeight: number;
     readonly detailRowHeight: number;
+    readonly showHoverRow: boolean;
     rowHeightsCache: RowHeightCache;
     temp: any[];
     offsetY: number;

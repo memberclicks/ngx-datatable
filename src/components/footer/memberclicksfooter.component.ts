@@ -55,7 +55,11 @@ export class DataTableFooterComponent {
   @Output() page: EventEmitter<any> = new EventEmitter();
 
   templateContext = {
-    parent : this
+    parent : {}
+  }
+
+  constructor(){
+    this.templateContext.parent = this;
   }
   get isVisible(): boolean {
     /**

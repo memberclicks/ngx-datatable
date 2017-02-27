@@ -8,7 +8,7 @@ export declare class DataTablePagerComponent {
     count: number;
     page: number;
     readonly totalPages: number;
-    change: EventEmitter<any>;
+    btnchange: EventEmitter<any>;
     _count: number;
     _page: number;
     _size: number;
@@ -17,6 +17,6 @@ export declare class DataTablePagerComponent {
     canNext(): boolean;
     prevPage(): void;
     nextPage(): void;
-    selectPage(page: number): void;
+    selectPage(page: any): void;
     calcPages(page?: number): any[];
 }

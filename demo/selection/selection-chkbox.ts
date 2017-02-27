@@ -34,8 +34,8 @@ import { Component } from '@angular/core';
             [resizeable]="false"
             [headerCheckboxable]="true"
             [checkboxable]="true">
-            <template let-parent="parent" ngx-datatable-checkbox-cell-template>
-              <md-checkbox [checked]="parent.isSelected" (change)="parent.onCheckboxChange($event)"></md-checkbox>
+            <template let-isSelected="isSelected" let-onCheckboxChange="onCheckboxChange" ngx-datatable-checkbox-cell-template>
+              <md-checkbox [checked]="isSelected()" (change)="onCheckboxChange($event)"></md-checkbox>
             </template>
             <template let-selected="allRowsSelected" let-parent="parent" let-emit="emit" ngx-datatable-checkbox-header-template>
               <md-checkbox [checked]="allRowsSelected" (change)="parent.select.emit(!parent.allRowsSelected)"></md-checkbox>

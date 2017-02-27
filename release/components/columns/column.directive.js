@@ -2,6 +2,8 @@
 var core_1 = require('@angular/core');
 var column_header_directive_1 = require('./column-header.directive');
 var column_cell_directive_1 = require('./column-cell.directive');
+var column_checkbox_cell_directive_1 = require('./column-checkbox-cell.directive');
+var column_checkbox_header_directive_1 = require('./column-checkbox-header.directive');
 var DataTableColumnDirective = (function () {
     function DataTableColumnDirective() {
     }
@@ -29,6 +31,8 @@ var DataTableColumnDirective = (function () {
         'headerCheckboxable': [{ type: core_1.Input },],
         'cellTemplate': [{ type: core_1.Input }, { type: core_1.ContentChild, args: [column_cell_directive_1.DataTableColumnCellDirective, { read: core_1.TemplateRef },] },],
         'headerTemplate': [{ type: core_1.Input }, { type: core_1.ContentChild, args: [column_header_directive_1.DataTableColumnHeaderDirective, { read: core_1.TemplateRef },] },],
+        'cellCheckboxTemplate': [{ type: core_1.Input }, { type: core_1.ContentChild, args: [column_checkbox_cell_directive_1.DataTableColumnCheckboxCellDirective, { read: core_1.TemplateRef },] },],
+        'headerCheckboxTemplate': [{ type: core_1.Input }, { type: core_1.ContentChild, args: [column_checkbox_header_directive_1.DataTableColumnCheckboxHeaderDirective, { read: core_1.TemplateRef },] },],
     };
     return DataTableColumnDirective;
 }());

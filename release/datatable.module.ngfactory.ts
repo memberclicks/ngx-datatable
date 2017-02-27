@@ -8,29 +8,44 @@
 import * as import0 from '@angular/core/src/linker/ng_module_factory';
 import * as import1 from '../../src/datatable.module';
 import * as import2 from '@angular/common/src/common_module';
-import * as import3 from '@angular/common/src/localization';
-import * as import4 from '@angular/core/src/di/injector';
-import * as import5 from '@angular/core/src/i18n/tokens';
+import * as import3 from '@angular/forms/src/directives';
+import * as import4 from '@angular/forms/src/form_providers';
+import * as import5 from '@angular/common/src/localization';
+import * as import6 from '@angular/forms/src/directives/radio_control_value_accessor';
+import * as import7 from '@angular/core/src/di/injector';
+import * as import8 from '@angular/core/src/i18n/tokens';
 class NgxDatatableModuleInjector extends import0.NgModuleInjector<import1.NgxDatatableModule> {
   _CommonModule_0:import2.CommonModule;
-  _NgxDatatableModule_1:import1.NgxDatatableModule;
-  __NgLocalization_2:import3.NgLocaleLocalization;
-  constructor(parent:import4.Injector) {
+  _InternalFormsSharedModule_1:import3.InternalFormsSharedModule;
+  _FormsModule_2:import4.FormsModule;
+  _NgxDatatableModule_3:import1.NgxDatatableModule;
+  __NgLocalization_4:import5.NgLocaleLocalization;
+  __RadioControlRegistry_5:import6.RadioControlRegistry;
+  constructor(parent:import7.Injector) {
     super(parent,([] as any[]),([] as any[]));
   }
-  get _NgLocalization_2():import3.NgLocaleLocalization {
-    if ((this.__NgLocalization_2 == null)) { (this.__NgLocalization_2 = new import3.NgLocaleLocalization(this.parent.get(import5.LOCALE_ID))); }
-    return this.__NgLocalization_2;
+  get _NgLocalization_4():import5.NgLocaleLocalization {
+    if ((this.__NgLocalization_4 == null)) { (this.__NgLocalization_4 = new import5.NgLocaleLocalization(this.parent.get(import8.LOCALE_ID))); }
+    return this.__NgLocalization_4;
+  }
+  get _RadioControlRegistry_5():import6.RadioControlRegistry {
+    if ((this.__RadioControlRegistry_5 == null)) { (this.__RadioControlRegistry_5 = new import6.RadioControlRegistry()); }
+    return this.__RadioControlRegistry_5;
   }
   createInternal():import1.NgxDatatableModule {
     this._CommonModule_0 = new import2.CommonModule();
-    this._NgxDatatableModule_1 = new import1.NgxDatatableModule();
-    return this._NgxDatatableModule_1;
+    this._InternalFormsSharedModule_1 = new import3.InternalFormsSharedModule();
+    this._FormsModule_2 = new import4.FormsModule();
+    this._NgxDatatableModule_3 = new import1.NgxDatatableModule();
+    return this._NgxDatatableModule_3;
   }
   getInternal(token:any,notFoundResult:any):any {
     if ((token === import2.CommonModule)) { return this._CommonModule_0; }
-    if ((token === import1.NgxDatatableModule)) { return this._NgxDatatableModule_1; }
-    if ((token === import3.NgLocalization)) { return this._NgLocalization_2; }
+    if ((token === import3.InternalFormsSharedModule)) { return this._InternalFormsSharedModule_1; }
+    if ((token === import4.FormsModule)) { return this._FormsModule_2; }
+    if ((token === import1.NgxDatatableModule)) { return this._NgxDatatableModule_3; }
+    if ((token === import5.NgLocalization)) { return this._NgLocalization_4; }
+    if ((token === import6.RadioControlRegistry)) { return this._RadioControlRegistry_5; }
     return notFoundResult;
   }
   destroyInternal():void {

@@ -1,6 +1,7 @@
 "use strict";
 var core_1 = require('@angular/core');
 var common_1 = require('@angular/common');
+var forms_1 = require('@angular/forms');
 require('rxjs/add/observable/fromEvent');
 var components_1 = require('./components');
 var directives_1 = require('./directives');
@@ -10,7 +11,8 @@ var NgxDatatableModule = (function () {
     NgxDatatableModule.decorators = [
         { type: core_1.NgModule, args: [{
                     imports: [
-                        common_1.CommonModule
+                        common_1.CommonModule,
+                        forms_1.FormsModule
                     ],
                     declarations: [
                         directives_1.VisibilityDirective,
@@ -29,20 +31,33 @@ var NgxDatatableModule = (function () {
                         components_1.ProgressBarComponent,
                         components_1.DataTableBodyRowComponent,
                         components_1.DataTableRowWrapperComponent,
+                        components_1.DataTableRowHoverComponent,
                         components_1.DatatableRowDetailDirective,
                         components_1.DatatableRowDetailTemplateDirective,
                         components_1.DataTableBodyCellComponent,
                         components_1.DataTableSelectionComponent,
                         components_1.DataTableColumnHeaderDirective,
-                        components_1.DataTableColumnCellDirective
+                        components_1.DataTableColumnCellDirective,
+                        components_1.DataTableColumnCheckboxHeaderDirective,
+                        components_1.DataTableColumnCheckboxCellDirective,
+                        components_1.DatatableRowHoverDirective,
+                        components_1.DatatableRowHoverTemplateDirective,
+                        components_1.DatatablePagerSelectDirective,
+                        components_1.DatatablePagerSelectTemplateDirective
                     ],
                     exports: [
                         components_1.DatatableComponent,
                         components_1.DatatableRowDetailDirective,
                         components_1.DatatableRowDetailTemplateDirective,
+                        components_1.DatatableRowHoverDirective,
+                        components_1.DatatableRowHoverTemplateDirective,
+                        components_1.DatatablePagerSelectDirective,
+                        components_1.DatatablePagerSelectTemplateDirective,
                         components_1.DataTableColumnDirective,
                         components_1.DataTableColumnHeaderDirective,
-                        components_1.DataTableColumnCellDirective
+                        components_1.DataTableColumnCellDirective,
+                        components_1.DataTableColumnCheckboxHeaderDirective,
+                        components_1.DataTableColumnCheckboxCellDirective
                     ]
                 },] },
     ];

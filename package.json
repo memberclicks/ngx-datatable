@@ -1,6 +1,6 @@
 {
   "name": "@memberclicks/ui-ngx-datatable",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "ui-ngx-datatable is a modified Angular2+ table grid component for presenting large and complex data.",
   "main": "release/index.js",
   "typings": "release/index.d.ts",

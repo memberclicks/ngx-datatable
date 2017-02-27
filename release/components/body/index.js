@@ -8,5 +8,6 @@ __export(require('./body-row.component'));
 __export(require('./progress-bar.component'));
 __export(require('./scroller.component'));
 __export(require('./body-row-wrapper.component'));
+__export(require('./body-row-hover.component'));
 __export(require('./selection.component'));
 //# sourceMappingURL=index.js.map

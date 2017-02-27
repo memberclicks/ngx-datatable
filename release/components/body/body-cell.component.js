@@ -4,9 +4,16 @@ var utils_1 = require('../../utils');
 var types_1 = require('../../types');
 var DataTableBodyCellComponent = (function () {
     function DataTableBodyCellComponent(element) {
+        var _this = this;
         this.activate = new core_1.EventEmitter();
         this.isFocused = false;
+        this.checkboxObject = {
+            isSelected: function () { return _this.isSelected; },
+            onCheckboxChange: function ($event) { return _this.onCheckboxChange($event); }
+        };
         this.element = element.nativeElement;
+        this.checkboxObject.isSelected.bind(this);
+        this.checkboxObject.onCheckboxChange.bind(this);
     }
     Object.defineProperty(DataTableBodyCellComponent.prototype, "sorts", {
         get: function () {
@@ -149,10 +156,13 @@ var DataTableBodyCellComponent = (function () {
         if (sort)
             return sort.dir;
     };
+    DataTableBodyCellComponent.prototype.getIsSelected = function () {
+        return this.isSelected;
+    };
     DataTableBodyCellComponent.decorators = [
         { type: core_1.Component, args: [{
                     selector: 'datatable-body-cell',
-                    template: "\n    <div class=\"datatable-body-cell-label\">\n      <label\n        *ngIf=\"column.checkboxable\" \n        class=\"datatable-checkbox\">\n        <input \n          type=\"checkbox\"\n          [checked]=\"isSelected\"\n          (click)=\"onCheckboxChange($event)\" \n        />\n      </label>\n      <span\n        *ngIf=\"!column.cellTemplate\"\n        [innerHTML]=\"value\">\n      </span>\n      <template\n        *ngIf=\"column.cellTemplate\"\n        [ngTemplateOutlet]=\"column.cellTemplate\"\n        [ngOutletContext]=\"{ value: value, row: row, column: column }\">\n      </template>\n    </div>\n  ",
+                    template: "\n    <div class=\"datatable-body-cell-label\">\n      <label\n        *ngIf=\"column.checkboxable && !column.cellCheckboxTemplate\" \n        class=\"datatable-checkbox\">\n        <input \n          type=\"checkbox\"\n          [checked]=\"isSelected\"\n          (click)=\"onCheckboxChange($event)\" \n        />\n      </label>\n      <template\n        class=\"datatable-checkbox\"\n        *ngIf=\"column.checkboxable && column.cellCheckboxTemplate\"\n        [ngTemplateOutlet]=\"column.cellCheckboxTemplate\" \n        [ngOutletContext]=\"checkboxObject\">\n      </template>\n      <span\n        *ngIf=\"!column.cellTemplate\"\n        [innerHTML]=\"value\">\n      </span>\n      <template\n        *ngIf=\"column.cellTemplate\"\n        [ngTemplateOutlet]=\"column.cellTemplate\"\n        [ngOutletContext]=\"{ value: value, row: row, column: column }\">\n      </template>\n    </div>\n  ",
                     host: {
                         class: 'datatable-body-cell'
                     }

@@ -31,6 +31,8 @@ export class Wrapper_DataTableColumnDirective {
   /*private*/ _expr_15:any;
   /*private*/ _expr_16:any;
   /*private*/ _expr_17:any;
+  /*private*/ _expr_18:any;
+  /*private*/ _expr_19:any;
   constructor() {
     this._changed = false;
     this.context = new import0.DataTableColumnDirective();
@@ -52,6 +54,8 @@ export class Wrapper_DataTableColumnDirective {
     this._expr_15 = import1.UNINITIALIZED;
     this._expr_16 = import1.UNINITIALIZED;
     this._expr_17 = import1.UNINITIALIZED;
+    this._expr_18 = import1.UNINITIALIZED;
+    this._expr_19 = import1.UNINITIALIZED;
   }
   ngOnDetach(view:import2.AppView<any>,componentView:import2.AppView<any>,el:any):void {
   }
@@ -181,6 +185,20 @@ export class Wrapper_DataTableColumnDirective {
       this._changed = true;
       this.context.headerTemplate = currValue;
       this._expr_17 = currValue;
+    }
+  }
+  check_cellCheckboxTemplate(currValue:any,throwOnChange:boolean,forceUpdate:boolean):void {
+    if ((forceUpdate || import3.checkBinding(throwOnChange,this._expr_18,currValue))) {
+      this._changed = true;
+      this.context.cellCheckboxTemplate = currValue;
+      this._expr_18 = currValue;
+    }
+  }
+  check_headerCheckboxTemplate(currValue:any,throwOnChange:boolean,forceUpdate:boolean):void {
+    if ((forceUpdate || import3.checkBinding(throwOnChange,this._expr_19,currValue))) {
+      this._changed = true;
+      this.context.headerCheckboxTemplate = currValue;
+      this._expr_19 = currValue;
     }
   }
   ngDoCheck(view:import2.AppView<any>,el:any,throwOnChange:boolean):boolean {

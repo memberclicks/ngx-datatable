@@ -1,9 +1,4 @@
 .ngx-datatable.material {
-	background:#FFF;
-  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24);
-  -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24);
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24);
-
 	&.striped {
 		.datatable-row-odd {
 			background: #eee;
@@ -38,12 +33,14 @@
     .datatable-body-row {
       &:hover,
 			&:hover .datatable-row-group {
-	      background-color: #eee;
+	      background-color: #EDFFE4;
 	      transition-property: background;
 	      transition-duration: .3s;
 	      transition-timing-function: linear;
 	    }
-
+ a{
+	 color: #30A800;
+ }
 			&:focus,
 			&:focus .datatable-row-group {
 				background-color: #ddd;
@@ -128,14 +125,23 @@
 	 * Header Styles
 	 */
 	.datatable-header {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    width: 1160px;
+height: 50px;
+background-color: #6E6E6E;
 
     .datatable-header-cell {
       text-align: left;
-      padding: .5rem 1.2rem;
       font-weight: 400;
-      color: #757575;
+      color: #FFFFFF;
       vertical-align: bottom;
+			font-family: Roboto;
+font-size: 12px;
+font-weight: bold;
+line-height: 14px;
+
+      .datatable-header-cell-wrapper {
+        position: relative;
+      }
 
       .datatable-header-cell-wrapper {
         position: relative;
@@ -144,7 +150,7 @@
 			&.longpress {
         .draggable::after {
           transition: transform 400ms ease, opacity 400ms ease;
-          opacity: .5;
+          opacity: 0.75;
           transform: scale(1);
         }
 			}
@@ -190,7 +196,6 @@
 	  .datatable-body-row {
 	    .datatable-body-cell {
 	      text-align: left;
-	      padding: .5rem 1.2rem;
 	      vertical-align: top;
 	      border-top: 0;
 
@@ -247,8 +252,15 @@
 	 * Footer Styles
 	 */
 	.datatable-footer {
-		border-top: 1px solid rgba(0, 0, 0, 0.12);
-		font-size:16px;
+		font-size:12px;
+		font-weight: 300;
+		margin-top:39px;
+				select{
+					width: 53px;
+					height: 40px;
+					border: none;
+					background-color: #FFFFFF;
+				}
 
 		.page-count{
 			line-height: 50px;
@@ -257,12 +269,13 @@
 		}
 
 		.datatable-pager {
-			margin: 0 10px;
+			//margin: 0 10px;
 	    //line-height: 50px;
+			padding-right:24px;
 
 			li {
 	    	vertical-align: middle;
-
+				
 				&.disabled a{
 					color:rgba(0, 0, 0, 0.26) !important;
 					background-color: transparent !important;
@@ -273,26 +286,31 @@
 					font-weight: bold;
 				}
 			}
-
-			a {
-				height: 22px;
-				min-width: 24px;
-				line-height: 22px;
-				padding: 0 6px;
-				border-radius: 3px;
-				margin: 6px 3px;
-				text-align: center;
-				vertical-align: top;
-				color: rgba(0,0,0,.54);
-				text-decoration: none;
-		    vertical-align: bottom;
-
-				&:hover{
-					color: rgba(0,0,0,.75);
-					background-color: rgba(158,158,158,0.2);
+			.pager {
+				li{
+					margin-right:16px;
 				}
+	.totpg{
+		font-weight:800;
+	}
+.icon-left, .icon-right{
+	          width: 40px;
+height: 40px;
+background-color: #F1F1F1;
+border: 1px solid rgba(0,0,0,0.2);
+border-radius: 2px;
+padding: 10px;
+display: block;
+&:hover{
+					color: rgba(0,0,0,.75);
+					background-color: rgba(158,158,158,0.5);
+				}
+				a{
+					margin: auto 0;
+					padding: 8px;
+				}
+}
 			}
-
 			.icon-left,
 			.icon-skip,
 			.icon-right,
@@ -322,7 +340,6 @@
     margin: 0 1rem 0 0;
     cursor: pointer;
     outline:none;
-
     &:before {
       -webkit-transition: all 0.3s ease-in-out;
       -moz-transition: all 0.3s ease-in-out;
@@ -331,8 +348,8 @@
       position: absolute;
       left: 0;
       z-index: 1;
-      width: 1rem;
-      height: 1rem;
+      width: 1.125rem;
+      height: 1.125rem;
       border: 2px solid #f2f2f2;
     }
 
@@ -342,7 +359,7 @@
       -ms-transform: rotate(-45deg);
       transform: rotate(-45deg);
       height: .5rem;
-      border-color: #009688;
+      background-color: #6CC24A;
       border-top-style: none;
       border-right-style: none;
     }
@@ -352,14 +369,21 @@
       position: absolute;
       top: 0;
       left: 0;
-      width: 1rem;
-      height: 1rem;
+      width: 1.125rem;
+      height: 1.125rem;
       background: #fff;
       cursor: pointer;
     }
   }
 }
-
+input[id^='input-md-checkbox']{
+display: none;
+width: 18px;
+height: 18px;
+}
+datatable-body-row[ng-reflect-is-selected='true']{
+	background-color: #F1F1F1;
+}
 /**
  * Progress bar animations
  */
@@ -373,4 +397,12 @@
     opacity: 0;
     transform: translateX(-50%) scale(0, 1); 
   } 
+}
+
+.datatable-row-hover{
+	display: block;
+  position: absolute;
+  top: 0;
+	right: 0;
+  padding: 5.27px 1.2rem;
 }

@@ -2,7 +2,8 @@
 var core_1 = require('@angular/core');
 var DataTablePagerComponent = (function () {
     function DataTablePagerComponent() {
-        this.change = new core_1.EventEmitter();
+        //Change Output 'change' EventEmitter to btn
+        this.btnchange = new core_1.EventEmitter();
         this._count = 0;
         this._page = 1;
         this._size = 0;
@@ -61,9 +62,10 @@ var DataTablePagerComponent = (function () {
         this.selectPage(this.page + 1);
     };
     DataTablePagerComponent.prototype.selectPage = function (page) {
+        page = Number(page);
         if (page > 0 && page <= this.totalPages && page !== this.page) {
             this.page = page;
-            this.change.emit({
+            this.btnchange.emit({
                 page: page
             });
         }
@@ -72,25 +74,22 @@ var DataTablePagerComponent = (function () {
         var pages = [];
         var startPage = 1;
         var endPage = this.totalPages;
-        var maxSize = 5;
-        var isMaxSized = maxSize < this.totalPages;
+        var maxSize = this.totalPages;
+        var isMaxSized = maxSize <= this.totalPages;
         page = page || this.page;
         if (isMaxSized) {
             startPage = ((Math.ceil(page / maxSize) - 1) * maxSize) + 1;
             endPage = Math.min(startPage + maxSize - 1, this.totalPages);
         }
         for (var num = startPage; num <= endPage; num++) {
-            pages.push({
-                number: num,
-                text: num
-            });
+            pages.push(num);
         }
         return pages;
     };
     DataTablePagerComponent.decorators = [
         { type: core_1.Component, args: [{
                     selector: 'datatable-pager',
-                    template: "\n    <ul class=\"pager\">\n      <li [class.disabled]=\"!canPrevious()\">\n        <a\n          href=\"javascript:void(0)\"\n          (click)=\"selectPage(1)\">\n          <i class=\"{{pagerPreviousIcon}}\"></i>\n        </a>\n      </li>\n      <li [class.disabled]=\"!canPrevious()\">\n        <a\n          href=\"javascript:void(0)\"\n          (click)=\"prevPage()\">\n          <i class=\"{{pagerLeftArrowIcon}}\"></i>\n        </a>\n      </li>\n      <li\n        class=\"pages\"\n        *ngFor=\"let pg of pages\"\n        [class.active]=\"pg.number === page\">\n        <a\n          href=\"javascript:void(0)\"\n          (click)=\"selectPage(pg.number)\">\n          {{pg.text}}\n        </a>\n      </li>\n      <li [class.disabled]=\"!canNext()\">\n        <a\n          href=\"javascript:void(0)\"\n          (click)=\"nextPage()\">\n          <i class=\"{{pagerRightArrowIcon}}\"></i>\n        </a>\n      </li>\n      <li [class.disabled]=\"!canNext()\">\n        <a\n          href=\"javascript:void(0)\"\n          (click)=\"selectPage(totalPages)\">\n          <i class=\"{{pagerNextIcon}}\"></i>\n        </a>\n      </li>\n    </ul>\n  ",
+                    template: "\n    <ul class=\"pager\">\n   <li [class]=\"pages\">Pages <select class=\"selection\" [(ngModel)]=\"page\" (change)=\"selectPage($event.target.value)\"> // value is a string or number\n    <option *ngFor=\"let pg of pages\" [value]=\"pg\">{{pg.toString()}}</option>\n</select> of <span class=\"totpg\">{{totalPages}}</span>\n      </li><li>of {{totalPages}}</li>\n      <li [class.disabled]=\"!canPrevious()\">\n        <a\n          href=\"javascript:void(0)\"\n          (click)=\"prevPage()\">\n          <i class=\"{{pagerLeftArrowIcon}}\"></i>\n        </a>\n      </li>\n      <li [class.disabled]=\"!canNext()\">\n        <a\n          href=\"javascript:void(0)\"\n          (click)=\"nextPage()\">\n          <i class=\"{{pagerRightArrowIcon}}\"></i>\n        </a>\n      </li>\n    </ul>\n  ",
                     host: {
                         class: 'datatable-pager'
                     },
@@ -107,9 +106,9 @@ var DataTablePagerComponent = (function () {
         'size': [{ type: core_1.Input },],
         'count': [{ type: core_1.Input },],
         'page': [{ type: core_1.Input },],
-        'change': [{ type: core_1.Output },],
+        'btnchange': [{ type: core_1.Output },],
     };
     return DataTablePagerComponent;
 }());
 exports.DataTablePagerComponent = DataTablePagerComponent;
-//# sourceMappingURL=pager.component.js.map
+//# sourceMappingURL=memberclickspager.component.js.map

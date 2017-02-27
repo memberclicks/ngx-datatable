@@ -154,7 +154,11 @@ export class DataTableHeaderCellComponent {
   checkboxObject = {
     allRowsSelected : this.allRowsSelected,
     emit : this.select,
-    parent : this
+    parent : () => this
   };
+
+  constructor(){
+    this.checkboxObject.parent.bind(this);
+  }
 
 }

@@ -3,6 +3,8 @@ import { ColumnMode, SortType, SelectionType } from '../types';
 import { DataTableBodyComponent } from './body';
 import { DataTableColumnDirective } from './columns';
 import { DatatableRowDetailDirective } from './row-detail';
+import { DatatableRowHoverDirective } from './row-hover';
+import { DatatablePagerSelectDirective } from './pager-select';
 export declare class DatatableComponent implements OnInit, AfterViewInit, DoCheck {
     /**
      * Gets the rows.
@@ -109,6 +111,14 @@ export declare class DatatableComponent implements OnInit, AfterViewInit, DoChec
      * @memberOf DatatableComponent
      */
     limit: number;
+    /**
+     * The page sizes available on the pager.
+     * Default value: `[ 5, 10, 25, 50, 100 ]`
+     *
+     * @type {number}
+     * @memberOf DatatableComponent
+     */
+    pageSizes: number[];
     /**
      * Gets the count.
      *
@@ -382,6 +392,13 @@ export declare class DatatableComponent implements OnInit, AfterViewInit, DoChec
      * @memberOf DatatableComponent
      */
     rowDetail: DatatableRowDetailDirective;
+    rowHover: DatatableRowHoverDirective;
+    /**
+     * Row Detail templates gathered from the ContentChild
+     *
+     * @memberOf DatatableComponent
+     */
+    pagerSelect: DatatablePagerSelectDirective;
     /**
      * Reference to the body component for manually
      * invoking functions on the body.
@@ -411,6 +428,8 @@ export declare class DatatableComponent implements OnInit, AfterViewInit, DoChec
     _rows: any[];
     _columns: any[];
     _columnTemplates: QueryList<DataTableColumnDirective>;
+    _rowHoverTemplateChild: DatatableRowHoverDirective;
+    _pagerSelectTemplateChild: DatatablePagerSelectDirective;
     constructor(element: ElementRef, differs: KeyValueDiffers);
     /**
      * Lifecycle hook that is called after data-bound

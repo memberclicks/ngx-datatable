@@ -18,4 +18,6 @@ export declare class DataTableColumnDirective {
     headerCheckboxable: boolean;
     cellTemplate: TemplateRef<any>;
     headerTemplate: TemplateRef<any>;
+    cellCheckboxTemplate: TemplateRef<any>;
+    headerCheckboxTemplate: TemplateRef<any>;
 }
