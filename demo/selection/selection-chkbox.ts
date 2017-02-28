@@ -38,7 +38,7 @@ import { Component } from '@angular/core';
               <md-checkbox [checked]="isSelected()" (change)="onCheckboxChange($event)"></md-checkbox>
             </template>
             <template let-selected="allRowsSelected" let-parent="parent" let-emit="emit" ngx-datatable-checkbox-header-template>
-              <md-checkbox [checked]="allRowsSelected" (change)="parent.select.emit(!parent.allRowsSelected)"></md-checkbox>
+              <md-checkbox [checked]="parent().allRowsSelected" (change)="parent().select.emit(!parent().allRowsSelected)"></md-checkbox>
             </template>
           </ngx-datatable-column>
           <ngx-datatable-column name="Name"></ngx-datatable-column>
